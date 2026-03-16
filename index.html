@@ -2,1049 +2,1313 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>KFP Export · 해외 바이어 발굴 전문 | 30일 안에 글로벌 파트너를 만나세요</title>
-<meta name="description" content="5개 시장 동시 공략 · 2.5억 검증 바이어 DB · 수출전략 제안서 · 미국 텍사스 법인설립. KFP Export가 처음부터 끝을 함께합니다.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+KR:wght@300;400;500;700;900&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>해외 바이어 발굴 AI 서비스 | 한국재무설계 KFP</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Noto+Serif+KR:wght@700;900&display=swap" rel="stylesheet">
 <style>
-:root {
-  --c-bg:#04080F; --c-bg2:#080E1A; --c-bg3:#0C1526; --c-navy:#0A1628;
-  --c-gold:#C9A84C; --c-gold2:#EDB84A; --c-gold-dim:rgba(201,168,76,.12);
-  --c-white:#F4F0E8; --c-gray:#7A8BA0;
-  --c-green:#22D97A; --c-blue:#4A9EFF; --c-red:#FF4F4F; --c-teal:#00D4C8;
-  --fd:'Bebas Neue',sans-serif; --fs:'DM Serif Display',serif; --fb:'Noto Sans KR',sans-serif;
-  --mw:1180px;
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   TOKENS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+:root{
+  --navy:   #0d1b2e;
+  --navy2:  #122040;
+  --orange: #E8732A;
+  --gold:   #E8B84B;
+  --white:  #ffffff;
+  --cream:  #f7f4ef;
+  --muted:  #718096;
+  --border: rgba(232,115,42,.18);
+  --R: .75rem;
 }
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
-body{font-family:var(--fb);background:var(--c-bg);color:var(--c-white);overflow-x:hidden;line-height:1.75;-webkit-font-smoothing:antialiased;}
-a{color:inherit;text-decoration:none;}
-.wrap{max-width:var(--mw);margin:0 auto;padding:0 5%;}
 
-/* URGENCY */
-.urgency-bar{background:linear-gradient(90deg,#7B1D1D,#991B1B,#7B1D1D);border-bottom:1px solid rgba(255,100,100,.2);text-align:center;padding:11px 5%;font-size:13px;font-weight:700;position:relative;z-index:1000;}
-.urgency-bar em{color:#FCA5A5;font-style:normal;}
-.urgency-bar a{color:#FCA5A5;text-decoration:underline;}
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   RESET
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Noto Sans KR',sans-serif;
+  font-size:14px;color:#222;background:#fff;
+  overflow-x:hidden;-webkit-font-smoothing:antialiased;
+}
+img{display:block;max-width:100%}
 
-/* HEADER */
-header{position:fixed;top:37px;left:0;right:0;z-index:998;padding:16px 5%;display:flex;align-items:center;justify-content:space-between;transition:all .4s cubic-bezier(.4,0,.2,1);}
-header.scrolled{top:0;background:rgba(4,8,15,.92);backdrop-filter:blur(24px);border-bottom:1px solid rgba(201,168,76,.12);padding:13px 5%;}
-.logo{font-family:var(--fd);font-size:26px;letter-spacing:5px;color:var(--c-gold);}
-nav{display:flex;align-items:center;gap:2px;}
-nav a{color:rgba(244,240,232,.55);font-size:13px;font-weight:500;padding:8px 14px;border-radius:6px;transition:all .2s;}
-nav a:hover{color:var(--c-gold);background:rgba(201,168,76,.06);}
-.nav-cta{background:var(--c-gold)!important;color:var(--c-navy)!important;font-weight:800!important;margin-left:8px;}
-.nav-cta:hover{background:var(--c-gold2)!important;box-shadow:0 0 24px rgba(201,168,76,.35);transform:translateY(-1px);}
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   ANIMATIONS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+@keyframes fadeUp   {from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+@keyframes floatY   {0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+@keyframes shimmer  {0%,100%{opacity:.5}50%{opacity:1}}
+@keyframes scaleIn  {from{opacity:0;transform:scale(.94)}to{opacity:1;transform:none}}
 
-/* HERO */
-.hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;padding-top:80px;}
-.h-canvas{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 70% 40%,rgba(201,168,76,.07) 0%,transparent 65%),radial-gradient(ellipse 50% 80% at 10% 80%,rgba(74,158,255,.05) 0%,transparent 60%);}
-.h-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(201,168,76,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,.025) 1px,transparent 1px);background-size:72px 72px;}
-.h-orb{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none;}
-.orb1{width:600px;height:600px;background:radial-gradient(circle,rgba(201,168,76,.12) 0%,transparent 70%);top:-100px;right:-80px;animation:orbF 8s ease-in-out infinite alternate;}
-.orb2{width:400px;height:400px;background:radial-gradient(circle,rgba(74,158,255,.08) 0%,transparent 70%);bottom:0;left:-100px;animation:orbF 11s ease-in-out infinite alternate-reverse;}
-@keyframes orbF{from{transform:translate(0,0) scale(1);}to{transform:translate(30px,-30px) scale(1.05);}}
-.h-content{position:relative;z-index:3;padding:100px 5% 80px;max-width:var(--mw);margin:0 auto;width:100%;}
-.h-eyebrow{display:inline-flex;align-items:center;gap:10px;background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.3);border-radius:50px;padding:8px 20px;font-size:11px;font-weight:700;letter-spacing:2.5px;color:var(--c-gold);margin-bottom:30px;}
-.pdot{width:7px;height:7px;border-radius:50%;background:var(--c-gold);animation:pd 1.8s ease-in-out infinite;}
-@keyframes pd{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.3;transform:scale(1.6);}}
-.hero h1{font-size:clamp(36px,5.5vw,72px);font-weight:900;line-height:1.08;letter-spacing:-2.5px;margin-bottom:26px;}
-.hero h1 .gold{color:var(--c-gold);}
-.hero h1 .it{font-family:var(--fs);font-style:italic;font-weight:400;color:rgba(244,240,232,.75);}
-.h-desc{font-size:clamp(14px,1.4vw,17px);color:rgba(244,240,232,.5);max-width:560px;margin-bottom:36px;line-height:1.9;}
-.h-desc strong{color:var(--c-white);}
-.mf-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:40px;}
-.mf{display:flex;align-items:center;gap:7px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:50px;padding:7px 16px;font-size:13px;font-weight:600;transition:all .25s;cursor:pointer;}
-.mf:hover{background:rgba(201,168,76,.12);border-color:rgba(201,168,76,.4);color:var(--c-gold);transform:translateY(-2px);}
-.mf:hover{border-color:rgba(201,168,76,.4);background:rgba(201,168,76,.07);transform:translateY(-2px);}
-.h-ctas{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:60px;}
-.btn-gold{display:inline-flex;align-items:center;gap:9px;background:linear-gradient(135deg,var(--c-gold),var(--c-gold2));color:var(--c-navy);padding:17px 42px;border-radius:8px;font-size:16px;font-weight:800;transition:all .25s;letter-spacing:.2px;}
-.btn-gold:hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(201,168,76,.38);}
-.btn-ghost{display:inline-flex;align-items:center;gap:8px;border:1.5px solid rgba(255,255,255,.18);color:rgba(244,240,232,.65);padding:17px 34px;border-radius:8px;font-size:15px;font-weight:600;transition:all .25s;}
-.btn-ghost:hover{border-color:var(--c-gold);color:var(--c-gold);background:rgba(201,168,76,.05);}
-.h-kpis{display:flex;border-radius:14px;overflow:hidden;border:1px solid rgba(201,168,76,.14);background:rgba(8,14,26,.7);backdrop-filter:blur(12px);max-width:680px;}
-.hkpi{flex:1;padding:20px 22px;text-align:center;border-right:1px solid rgba(201,168,76,.1);}
-.hkpi:last-child{border-right:none;}
-.hkpi-n{font-family:var(--fd);font-size:40px;color:var(--c-gold);line-height:1;display:block;margin-bottom:4px;}
-.hkpi-l{font-size:12px;color:var(--c-gray);font-weight:500;}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:none}
+.reveal-scale{opacity:0;transform:scale(.96);transition:opacity .7s ease,transform .7s ease}
+.reveal-scale.visible{opacity:1;transform:none}
 
-/* TICKER */
-.ticker-wrap{background:rgba(201,168,76,.05);border-top:1px solid rgba(201,168,76,.12);border-bottom:1px solid rgba(201,168,76,.12);overflow:hidden;padding:16px 0;}
-.ticker-inner{display:flex;gap:60px;width:max-content;animation:tick 28s linear infinite;}
-.ticker-wrap:hover .ticker-inner{animation-play-state:paused;}
-@keyframes tick{from{transform:translateX(0);}to{transform:translateX(-50%);}}
-.t-item{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:700;color:rgba(244,240,232,.38);white-space:nowrap;letter-spacing:.5px;}
-.t-item span{color:var(--c-gold);font-family:var(--fd);font-size:20px;}
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   NAV
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:999;
+  background:rgba(13,27,46,.97);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border);
+  padding:11px 20px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.nav-logo{display:flex;align-items:center;gap:9px}
+.nav-logo img{height:26px}
+.nav-logo-txt{font-size:13px;font-weight:900;color:var(--white);letter-spacing:.04em}
+.nav-logo-txt em{font-style:normal;color:var(--orange)}
+.nav-cta{
+  background:var(--orange);color:var(--white);
+  font-size:12px;font-weight:700;padding:8px 15px;
+  border-radius:.4rem;text-decoration:none;white-space:nowrap;
+  transition:background .2s,transform .15s;
+}
+.nav-cta:hover{background:#cf6224;transform:scale(1.03)}
 
-/* SECTION BASE */
-.sec{padding:90px 5%;}
-.sw{max-width:var(--mw);margin:0 auto;}
-.sey{font-size:11px;font-weight:700;letter-spacing:3px;color:var(--c-gold);margin-bottom:12px;text-transform:uppercase;}
-.sh2{font-size:clamp(26px,3.5vw,44px);font-weight:900;line-height:1.1;letter-spacing:-1px;margin-bottom:14px;}
-.slead{font-size:15px;color:rgba(244,240,232,.48);max-width:580px;line-height:1.9;margin-bottom:50px;}
-
-/* PAIN */
-.pain-sec{background:var(--c-bg2);}
-.pain-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:24px;}
-.pain-card{background:rgba(255,79,79,.04);border:1px solid rgba(255,79,79,.14);border-left:3px solid rgba(255,79,79,.5);border-radius:14px;padding:24px;}
-.pain-icon{font-size:24px;margin-bottom:10px;}
-.pain-card p{font-size:14px;color:rgba(244,240,232,.52);line-height:1.85;font-style:italic;margin-bottom:10px;}
-.pain-src{font-size:12px;color:var(--c-gray);font-weight:700;}
-.pain-root{background:rgba(201,168,76,.04);border:1px solid rgba(201,168,76,.18);border-radius:14px;padding:22px 28px;display:flex;align-items:center;gap:16px;}
-.pain-root-icon{font-size:28px;flex-shrink:0;}
-.pain-root p{font-size:14px;color:rgba(244,240,232,.55);line-height:1.8;}
-.pain-root p strong{color:var(--c-white);}
-
-/* MARKETS */
-.mkt-sec{background:var(--c-bg3);}
-.mtabs{display:flex;gap:6px;margin-bottom:36px;flex-wrap:wrap;}
-.mtab{padding:10px 22px;border-radius:8px;font-size:14px;font-weight:700;border:1px solid rgba(255,255,255,.08);background:transparent;color:rgba(244,240,232,.38);cursor:pointer;transition:all .22s;font-family:var(--fb);}
-.mtab:hover{border-color:rgba(201,168,76,.3);color:rgba(244,240,232,.7);}
-.mtab.active{background:rgba(201,168,76,.1);border-color:rgba(201,168,76,.45);color:var(--c-gold);}
-.mpanel{display:none;}
-.mpanel.active{display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:start;}
-.mpi h3{font-size:clamp(22px,3vw,34px);font-weight:900;margin-bottom:14px;line-height:1.15;}
-.mpi h3 em{color:var(--c-gold);font-style:normal;}
-.mpi>p{font-size:14px;color:rgba(244,240,232,.5);line-height:1.9;margin-bottom:22px;}
-.mp-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:22px;}
-.mp-s{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:8px;padding:15px;}
-.mp-sv{font-family:var(--fd);font-size:32px;color:var(--c-gold);line-height:1;}
-.mp-sk{font-size:11px;color:var(--c-gray);margin-top:3px;}
-.mp-strats{display:grid;gap:10px;}
-.mps{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:8px;padding:16px;display:flex;gap:12px;align-items:flex-start;transition:border-color .2s;}
-.mps:hover{border-color:rgba(201,168,76,.2);}
-.mps-ic{font-size:22px;flex-shrink:0;}
-.mps h4{font-size:14px;font-weight:700;margin-bottom:3px;}
-.mps p{font-size:13px;color:rgba(244,240,232,.4);line-height:1.65;}
-
-/* SERVICES */
-.svc-sec{background:var(--c-bg);}
-.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
-.svc-card{position:relative;overflow:hidden;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:20px;padding:36px 28px;transition:all .35s cubic-bezier(.4,0,.2,1);}
-.svc-card::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(201,168,76,.06) 0%,transparent 65%);opacity:0;transition:opacity .35s;}
-.svc-card:hover{transform:translateY(-6px);border-color:rgba(201,168,76,.22);}
-.svc-card:hover::after{opacity:1;}
-.svc-top{height:3px;position:absolute;top:0;left:0;right:0;border-radius:20px 20px 0 0;}
-.s1t{background:linear-gradient(90deg,var(--c-gold),var(--c-gold2));}
-.s2t{background:linear-gradient(90deg,var(--c-blue),var(--c-teal));}
-.s3t{background:linear-gradient(90deg,var(--c-green),#34D399);}
-.svc-num{font-family:var(--fd);font-size:56px;color:rgba(201,168,76,.07);line-height:1;margin-bottom:12px;}
-.svc-ic{font-size:38px;margin-bottom:14px;}
-.svc-title{font-size:21px;font-weight:900;margin-bottom:10px;}
-.svc-desc{font-size:13px;color:rgba(244,240,232,.45);line-height:1.9;margin-bottom:20px;}
-.svc-feats{list-style:none;}
-.svc-feats li{font-size:13px;color:rgba(244,240,232,.45);padding:6px 0;border-bottom:1px solid rgba(255,255,255,.04);display:flex;gap:8px;}
-.svc-feats li:last-child{border-bottom:none;}
-.svc-feats li::before{content:'✓';color:var(--c-gold);font-weight:900;flex-shrink:0;}
-.svc-badge{display:inline-block;margin-top:18px;padding:5px 14px;border-radius:50px;font-size:11px;font-weight:700;letter-spacing:.5px;}
-.sb1{background:rgba(201,168,76,.12);color:var(--c-gold);border:1px solid rgba(201,168,76,.25);}
-.sb2{background:rgba(74,158,255,.1);color:var(--c-blue);border:1px solid rgba(74,158,255,.2);}
-.sb3{background:rgba(34,217,122,.09);color:var(--c-green);border:1px solid rgba(34,217,122,.2);}
-
-/* TEXAS */
-.tx-sec{background:linear-gradient(135deg,var(--c-bg3),var(--c-bg2),var(--c-bg3));border-top:1px solid rgba(201,168,76,.12);border-bottom:1px solid rgba(201,168,76,.12);position:relative;overflow:hidden;}
-.tx-sec::before{content:'★';position:absolute;right:-40px;top:50%;transform:translateY(-50%);font-size:500px;color:rgba(255,255,255,.01);pointer-events:none;line-height:1;}
-.tx-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;}
-.tx-dead{display:inline-flex;align-items:center;gap:8px;background:rgba(255,79,79,.1);border:1px solid rgba(255,79,79,.3);border-radius:50px;padding:7px 18px;font-size:12px;font-weight:700;color:#FCA5A5;margin-bottom:22px;}
-.tx-info h2{font-size:clamp(26px,3.2vw,42px);font-weight:900;line-height:1.15;margin-bottom:14px;}
-.tx-info h2 em{color:var(--c-gold);font-style:normal;}
-.tx-info>p{font-size:15px;color:rgba(244,240,232,.5);line-height:1.9;margin-bottom:26px;}
-.tx-cities{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:28px;}
-.city-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:14px 16px;transition:all .2s;}
-.city-card:hover{border-color:rgba(201,168,76,.3);background:rgba(201,168,76,.05);}
-.cf{font-size:20px;margin-bottom:4px;}
-.cn{font-size:14px;font-weight:800;margin-bottom:2px;}
-.cs{font-size:11px;color:var(--c-gray);}
-.tmem-box{background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.2);border-radius:14px;padding:20px 22px;}
-.tmem-box h4{font-size:14px;font-weight:800;color:var(--c-gold);margin-bottom:6px;}
-.tmem-box p{font-size:13px;color:rgba(244,240,232,.45);line-height:1.75;}
-.tx-steps{display:grid;gap:12px;}
-.tx-step{display:flex;gap:16px;align-items:flex-start;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:8px;padding:17px;transition:all .2s;}
-.tx-step:hover{border-color:rgba(201,168,76,.18);transform:translateX(4px);}
-.tx-sn{width:32px;height:32px;border-radius:8px;flex-shrink:0;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.22);color:var(--c-gold);font-weight:900;font-size:13px;display:flex;align-items:center;justify-content:center;}
-.tx-step h4{font-size:13px;font-weight:700;margin-bottom:2px;}
-.tx-step p{font-size:12px;color:rgba(244,240,232,.38);line-height:1.65;}
-
-/* PROPOSAL */
-.prop-sec{background:var(--c-bg2);}
-.prop-grid{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:center;}
-.prop-card{background:var(--c-bg3);border:1px solid rgba(201,168,76,.15);border-radius:20px;overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,.5);}
-.ph{background:rgba(201,168,76,.07);padding:20px 24px;border-bottom:1px solid rgba(201,168,76,.1);display:flex;justify-content:space-between;align-items:center;}
-.ph h4{font-size:14px;font-weight:800;}
-.pt{background:rgba(201,168,76,.14);padding:4px 12px;border-radius:50px;font-size:10px;font-weight:700;color:var(--c-gold);}
-.pb{padding:20px 24px;}
-.pr{display:flex;gap:10px;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:13px;}
-.pr:last-child{border-bottom:none;}
-.pn{color:var(--c-gold);font-weight:700;width:22px;flex-shrink:0;}
-.ptt{color:rgba(244,240,232,.52);}
-.prop-info h2{font-size:clamp(22px,2.8vw,34px);font-weight:900;line-height:1.2;margin-bottom:14px;}
-.prop-info h2 em{color:var(--c-gold);font-style:normal;}
-.prop-info>p{font-size:14px;color:rgba(244,240,232,.48);line-height:1.9;margin-bottom:24px;}
-.pf-list{display:grid;gap:11px;}
-.pf{display:flex;gap:12px;align-items:flex-start;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:8px;padding:14px;transition:border-color .2s;}
-.pf:hover{border-color:rgba(201,168,76,.18);}
-.pf-ic{font-size:22px;flex-shrink:0;}
-.pf p{font-size:13px;color:rgba(244,240,232,.48);line-height:1.7;}
-.pf p strong{color:var(--c-white);}
-
-/* COMPARE */
-.cmp-sec{background:var(--c-bg3);}
-.tbl-wrap{border:1px solid rgba(255,255,255,.07);border-radius:20px;overflow:hidden;}
-.cmp-tbl{width:100%;border-collapse:collapse;font-size:15px;}
-.cmp-tbl thead tr{background:rgba(255,255,255,.04);}
-.cmp-tbl th{padding:15px 20px;text-align:left;font-size:12px;font-weight:700;letter-spacing:.6px;color:var(--c-gray);border-bottom:1px solid rgba(255,255,255,.07);}
-.cmp-tbl th:nth-child(3){color:var(--c-gold);}
-.cmp-tbl td{padding:13px 20px;border-bottom:1px solid rgba(255,255,255,.04);color:rgba(244,240,232,.55);}
-.cmp-tbl td:nth-child(3){color:var(--c-white);font-weight:700;}
-.cmp-tbl tr:last-child td{border-bottom:none;}
-.cmp-tbl tr:hover td{background:rgba(255,255,255,.02);}
-.ck{color:var(--c-green);}
-.xk{color:rgba(255,79,79,.5);}
-
-/* PROCESS */
-.proc-sec{background:var(--c-bg);}
-.proc-list{display:grid;gap:14px;max-width:820px;}
-.proc-item{display:flex;gap:24px;align-items:flex-start;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:14px;padding:24px 28px;transition:all .25s;position:relative;}
-.proc-item::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;border-radius:14px 0 0 14px;background:transparent;transition:background .25s;}
-.proc-item:hover{border-color:rgba(201,168,76,.2);transform:translateX(6px);}
-.proc-item:hover::before{background:var(--c-gold);}
-.pn2{width:44px;height:44px;border-radius:12px;flex-shrink:0;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.22);color:var(--c-gold);font-weight:900;font-size:20px;display:flex;align-items:center;justify-content:center;}
-.pt2{font-size:11px;font-weight:700;color:var(--c-gold);letter-spacing:1px;display:block;margin-bottom:5px;}
-.proc-item h3{font-size:17px;font-weight:800;margin-bottom:6px;}
-.proc-item p{font-size:14px;color:rgba(244,240,232,.47);line-height:1.8;}
-.ptags{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px;}
-.ptag{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);padding:3px 10px;border-radius:50px;font-size:11px;color:rgba(244,240,232,.42);}
-
-/* TESTIMONIALS */
-.tst-sec{background:var(--c-bg2);}
-.tst-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
-.tst-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:20px;padding:28px;transition:all .3s;}
-.tst-card:hover{border-color:rgba(201,168,76,.2);transform:translateY(-4px);}
-.stars{color:var(--c-gold);font-size:16px;letter-spacing:3px;margin-bottom:14px;}
-.tst-card p{font-size:14px;color:rgba(244,240,232,.52);line-height:1.9;}
-.tst-card p strong{color:var(--c-white);}
-.tst-auth{font-size:12px;color:var(--c-gold);font-weight:700;margin-top:16px;}
-
-/* PARTNERS */
-.ptn-sec{background:var(--c-bg3);border-top:1px solid rgba(255,255,255,.05);}
-.ptn-lbl{text-align:center;font-size:12px;color:rgba(244,240,232,.25);font-weight:700;letter-spacing:3px;margin-bottom:34px;text-transform:uppercase;}
-.ptn-row{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;max-width:1000px;margin:0 auto 28px;}
-.pti{flex:1;min-width:120px;text-align:center;padding:14px 18px;border-right:1px solid rgba(255,255,255,.05);}
-.pti:last-child{border-right:none;}
-.ptn{font-size:13px;font-weight:800;color:rgba(244,240,232,.2);letter-spacing:.5px;transition:color .2s;}
-.pti:hover .ptn{color:rgba(244,240,232,.45);}
-.pts{font-size:10px;color:rgba(244,240,232,.1);margin-top:3px;}
-.ptn-note{text-align:center;font-size:13px;color:rgba(244,240,232,.25);}
-
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   HERO — 풀스크린 이미지
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.hero{
+  position:relative;min-height:100svh;
+  display:flex;flex-direction:column;justify-content:center;
+  overflow:hidden;padding-top:56px;
+}
+/* 배경 이미지 */
+.hero-bg{
+  position:absolute;inset:0;z-index:0;
+  background:
+    url('https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=1400&q=85')
+    center/cover no-repeat;
+}
+/* 다층 오버레이 — 위쪽은 진하게, 아래는 더 진하게 */
+.hero-bg::after{
+  content:'';position:absolute;inset:0;
+  background:
+    linear-gradient(to bottom,
+      rgba(13,27,46,.82) 0%,
+      rgba(13,27,46,.72) 40%,
+      rgba(13,27,46,.92) 100%);
+}
+/* 오렌지 광원 */
+.hero-glow{
+  position:absolute;bottom:-80px;left:50%;transform:translateX(-50%);
+  width:600px;height:300px;z-index:1;
+  background:radial-gradient(ellipse at center,rgba(232,115,42,.18) 0%,transparent 70%);
+  pointer-events:none;
+}
+.hero-content{
+  position:relative;z-index:2;
+  padding:44px 22px 36px;
+  text-align:center;
+  display:flex;flex-direction:column;align-items:center;
+}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  background:rgba(232,115,42,.18);border:1px solid rgba(232,115,42,.35);
+  color:#ffb07a;font-size:11px;font-weight:700;
+  padding:5px 14px;border-radius:20px;letter-spacing:.08em;
+  margin-bottom:18px;
+  animation:fadeUp .55s ease .1s both;
+}
+.hero h1{
+  font-family:'Noto Serif KR',serif;
+  font-size:clamp(1.65rem,6vw,2.7rem);
+  font-weight:900;color:var(--white);
+  line-height:1.35;margin-bottom:12px;
+  animation:fadeUp .6s ease .2s both;
+}
+.hero h1 em{font-style:normal;color:var(--gold)}
+.hero-sub{
+  font-size:13.5px;color:rgba(255,255,255,.55);
+  line-height:1.85;margin-bottom:26px;
+  animation:fadeUp .6s ease .3s both;
+}
+/* KPI 가로 */
+.hero-kpi{
+  display:flex;gap:0;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:.6rem;overflow:hidden;
+  margin-bottom:26px;width:100%;max-width:340px;
+  animation:fadeUp .6s ease .4s both;
+}
+.hero-kpi-item{flex:1;padding:12px 6px;text-align:center;border-right:1px solid rgba(255,255,255,.08)}
+.hero-kpi-item:last-child{border-right:none}
+.hero-kpi-num{font-size:20px;font-weight:900;color:var(--gold);display:block;line-height:1}
+.hero-kpi-label{font-size:10px;color:rgba(255,255,255,.4);margin-top:3px}
 /* CTA */
-.cta-sec{background:linear-gradient(135deg,var(--c-bg2),var(--c-bg3),var(--c-bg2));position:relative;overflow:hidden;}
-.cta-sec::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 50%,rgba(201,168,76,.07) 0%,transparent 65%);}
-.cta-inner{position:relative;z-index:2;text-align:center;max-width:700px;margin:0 auto;}
-.cta-inner h2{font-size:clamp(28px,4.5vw,52px);font-weight:900;line-height:1.1;letter-spacing:-1.5px;margin-bottom:16px;}
-.cta-inner>p{font-size:15px;color:rgba(244,240,232,.48);margin-bottom:36px;line-height:1.85;}
-.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
-.cta-note{font-size:13px;color:rgba(244,240,232,.25);margin-top:20px;}
-
-/* IMAGE BANDS */
-.ib{position:relative;height:400px;overflow:hidden;}
-.ib img{width:100%;height:100%;object-fit:cover;transition:transform 10s ease;}
-.ib:hover img{transform:scale(1.04);}
-.ibo{position:absolute;inset:0;display:flex;align-items:center;padding:0 5%;}
-.ib-l{background:linear-gradient(90deg,rgba(4,8,15,.9) 0%,rgba(4,8,15,.5) 60%,transparent 100%);}
-.ib-r{background:linear-gradient(270deg,rgba(4,8,15,.9) 0%,rgba(4,8,15,.5) 60%,transparent 100%);justify-content:flex-end;}
-.ibt{max-width:520px;}
-.ib-tag{display:inline-block;background:rgba(201,168,76,.14);border:1px solid rgba(201,168,76,.28);padding:5px 16px;border-radius:50px;font-size:11px;font-weight:700;color:var(--c-gold);letter-spacing:2px;margin-bottom:14px;}
-.ibt h2{font-size:clamp(24px,3.5vw,42px);font-weight:900;line-height:1.15;margin-bottom:10px;}
-.ibt h2 span{color:var(--c-gold);}
-.ibt p{font-size:15px;color:rgba(244,240,232,.55);line-height:1.8;}
-.ibt .btn-gold{margin-top:22px;font-size:15px;padding:13px 30px;}
-
-/* FOOTER */
-footer{background:var(--c-bg);border-top:1px solid rgba(255,255,255,.06);padding:52px 5% 28px;}
-.fi{max-width:var(--mw);margin:0 auto;display:flex;gap:60px;margin-bottom:42px;}
-.fb2{flex:1;}
-.flogo{font-family:var(--fd);font-size:24px;letter-spacing:5px;color:var(--c-gold);margin-bottom:14px;}
-.fb2 p{font-size:13px;color:rgba(244,240,232,.3);line-height:1.9;}
-.flinks{display:flex;gap:10px;flex-wrap:wrap;align-self:flex-start;margin-top:6px;}
-.flinks a{font-size:13px;color:rgba(244,240,232,.35);padding:6px 14px;border-radius:6px;border:1px solid rgba(255,255,255,.06);transition:all .2s;}
-.flinks a:hover{color:var(--c-gold);border-color:rgba(201,168,76,.2);}
-.fcopy{max-width:var(--mw);margin:0 auto;padding-top:22px;border-top:1px solid rgba(255,255,255,.06);font-size:12px;color:rgba(244,240,232,.2);}
-
-/* ANIMATIONS */
-.fu{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease;}
-.fu.vis{opacity:1;transform:translateY(0);}
-.fu.d1{transition-delay:.1s;} .fu.d2{transition-delay:.2s;} .fu.d3{transition-delay:.3s;}
-.fu.d4{transition-delay:.4s;} .fu.d5{transition-delay:.5s;}
-
-/* RESPONSIVE */
-@media(max-width:900px){
-  .mpanel.active,.tx-grid,.prop-grid,.svc-grid,.tst-grid{grid-template-columns:1fr;gap:24px;}
-  .pain-grid{grid-template-columns:1fr;}
-  .h-kpis{flex-wrap:wrap;}
-  .hkpi{min-width:50%;}
-  nav{display:none;}
+.hero-cta-wrap{
+  display:flex;flex-direction:column;gap:10px;
+  width:100%;max-width:320px;
+  animation:fadeUp .6s ease .5s both;
 }
-@media(max-width:600px){
-  .mp-stats,.tx-cities{grid-template-columns:1fr 1fr;}
-  .hkpi{min-width:100%;}
-/* MARKETS STRIP */
-.markets-strip{padding:80px 5%;background:var(--c-bg2);}
-.ms-head{text-align:center;margin-bottom:48px;}
-.ms-label{font-size:11px;font-weight:700;letter-spacing:3px;color:var(--c-gold);margin-bottom:12px;display:block;}
-.ms-head h2{font-size:clamp(26px,3.2vw,40px);font-weight:900;line-height:1.25;}
-.ms-grid{
-  display:flex;
-  justify-content:center;
-  gap:14px;
-  flex-wrap:wrap;
-  max-width:1100px;
-  margin:0 auto;
+.btn-primary{
+  display:block;text-align:center;text-decoration:none;
+  background:var(--orange);color:var(--white);
+  font-size:15px;font-weight:900;
+  padding:15px;border-radius:.5rem;
+  box-shadow:0 8px 24px rgba(232,115,42,.35);
+  transition:background .2s,transform .15s,box-shadow .15s;
 }
-.ms-card{
-  position:relative;border-radius:16px;overflow:hidden;cursor:pointer;
-  width:196px;height:280px;
-  border:1px solid rgba(255,255,255,.07);
-  transition:all .35s cubic-bezier(.4,0,.2,1);
-  flex-shrink:0;
+.btn-primary:hover{background:#cf6224;transform:scale(1.02);box-shadow:0 12px 32px rgba(232,115,42,.5)}
+.btn-ghost2{
+  display:block;text-align:center;text-decoration:none;
+  border:1px solid rgba(255,255,255,.22);
+  color:rgba(255,255,255,.6);font-size:13px;
+  padding:11px;border-radius:.5rem;
+  transition:border-color .2s,color .2s;
 }
-.ms-grid{
-  display:grid;
-  grid-template-columns:repeat(3, 220px);
-  grid-template-rows:auto auto;
-  gap:16px;
-  justify-content:center;
-  max-width:1100px;
-  margin:0 auto;
+.btn-ghost2:hover{border-color:var(--orange);color:var(--orange)}
+.hero-note{font-size:11px;color:rgba(255,255,255,.28);margin-top:7px;animation:fadeUp .6s ease .6s both}
+/* 스크롤 힌트 */
+.scroll-hint{
+  position:absolute;bottom:22px;left:50%;transform:translateX(-50%);z-index:2;
+  display:flex;flex-direction:column;align-items:center;gap:5px;
+  animation:floatY 2.2s ease infinite;
 }
-/* 4,5번째 카드 → 2행 가운데 정렬 */
-.ms-card:nth-child(4){grid-column:1/2;justify-self:end;}
-.ms-card:nth-child(5){grid-column:2/3;justify-self:start;}
-.ms-card{
-  position:relative;border-radius:16px;overflow:hidden;cursor:pointer;
-  width:220px;height:280px;
-  border:1px solid rgba(255,255,255,.07);
-  transition:all .35s cubic-bezier(.4,0,.2,1);
+.scroll-hint span{font-size:9px;color:rgba(255,255,255,.25);letter-spacing:.12em;text-transform:uppercase}
+.scroll-dot{width:5px;height:5px;border-radius:50%;background:var(--orange)}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   INTRO BANNER (어두운 배경)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.intro{
+  position:relative;overflow:hidden;
+  background:var(--navy);
+  padding:32px 20px;text-align:center;
+}
+/* 배경 — 오피스 이미지 저채도 */
+.intro-bg{
+  position:absolute;inset:0;
+  background:url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=900&q=70') center/cover;
+  opacity:.1;
+}
+.intro-inner{position:relative;z-index:1}
+.intro h2{
+  font-size:18px;font-weight:900;color:var(--white);
+  line-height:1.55;margin-bottom:14px;
+}
+.intro h2 em{font-style:normal;color:var(--gold)}
+.intro p{font-size:12.5px;color:rgba(255,255,255,.45);line-height:1.8;margin-bottom:18px}
+.intro-card{
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);
+  border-radius:.6rem;padding:13px 16px;margin-bottom:10px;
+  font-size:13px;color:rgba(255,255,255,.55);text-align:left;
+}
+.intro-card em{font-style:normal;color:var(--gold);font-weight:700}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   섹션 공통
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.sec{padding:42px 20px}
+.inner{max-width:680px;margin:0 auto}
+.sec-label{
+  font-size:10.5px;font-weight:700;color:var(--orange);
+  letter-spacing:.18em;text-transform:uppercase;
+  display:block;margin-bottom:6px;
+}
+.sec-h2{
+  font-family:'Noto Serif KR',serif;
+  font-size:clamp(1.3rem,4.5vw,1.85rem);font-weight:900;
+  color:var(--navy);line-height:1.38;margin-bottom:8px;
+}
+.sec-h2 em{font-style:normal;color:var(--orange)}
+.sec-p{font-size:13px;color:var(--muted);line-height:1.9}
+.accent-line{
+  width:2.2rem;height:3px;
+  background:linear-gradient(90deg,var(--orange),var(--gold));
+  border-radius:2px;margin-bottom:14px;
 }
 
-@media(max-width:1000px){
-  .strat-inner{grid-template-columns:1fr;gap:36px;}
-  .ms-grid{grid-template-columns:repeat(3,1fr);width:100%;}
-  .ms-card{width:100%;height:220px;}
-  .ms-card:nth-child(4){grid-column:auto;justify-self:auto;}
-  .ms-card:nth-child(5){grid-column:auto;justify-self:auto;}
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   KPI 섹션
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.kpi-sec{background:var(--cream);padding:36px 20px}
+.kpi-row{
+  display:flex;gap:1px;background:#e0dbd3;
+  border-radius:.75rem;overflow:hidden;
+  box-shadow:0 4px 20px rgba(0,0,0,.07);
 }
-@media(max-width:600px){
-  .ms-grid{grid-template-columns:repeat(2,1fr);}
-  .ms-card{height:180px;}
-}
-.ms-card:hover{transform:translateY(-8px) scale(1.02);box-shadow:0 28px 56px rgba(0,0,0,.6);border-color:rgba(201,168,76,.3);}
-.ms-img{position:absolute;inset:0;}
-.ms-img img{width:100%;height:100%;object-fit:cover;filter:brightness(0.42) saturate(1.3);transition:transform .55s ease, filter .35s;}
-.ms-card:hover .ms-img img{transform:scale(1.08);filter:brightness(0.58) saturate(1.4);}
-.ms-overlay{position:absolute;inset:0;background:linear-gradient(0deg,rgba(4,8,15,.95) 0%,rgba(4,8,15,.3) 55%,transparent 100%);}
-.ms-sel-ring{position:absolute;inset:0;border-radius:16px;border:2px solid var(--c-gold);opacity:0;transition:opacity .3s;}
-.ms-card:hover .ms-sel-ring{opacity:1;}
-.ms-info{position:absolute;bottom:0;left:0;right:0;padding:20px 14px;text-align:center;}
-.ms-flag{font-size:32px;margin-bottom:8px;filter:drop-shadow(0 2px 8px rgba(0,0,0,.6));display:block;}
-.ms-name{font-size:14px;font-weight:800;color:#fff;margin-bottom:4px;letter-spacing:.2px;}
-.ms-sub{font-size:11px;color:rgba(255,255,255,.45);font-weight:500;transition:color .25s;}
-.ms-card:hover .ms-sub{color:var(--c-gold);}
-.ms-arrow{position:absolute;top:12px;right:12px;width:26px;height:26px;border-radius:50%;background:rgba(201,168,76,0);border:1px solid rgba(201,168,76,0);display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--c-gold);opacity:0;transition:all .3s;}
-.ms-card:hover .ms-arrow{opacity:1;background:rgba(201,168,76,.12);border-color:rgba(201,168,76,.35);}
+.kpi-cell{flex:1;background:#fff;padding:20px 8px;text-align:center}
+.kpi-icon{font-size:22px;display:block;margin-bottom:5px}
+.kpi-num{font-size:26px;font-weight:900;color:var(--orange);display:block;line-height:1}
+.kpi-title{font-size:11px;font-weight:700;color:var(--navy);margin:4px 0 2px}
+.kpi-desc{font-size:10px;color:#aaa;line-height:1.4}
 
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   PAIN — 이미지 배경 + 카드
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.pain-sec{background:#fff;padding:0}
+/* 이미지 배너 — 풀너비, 텍스트 오버레이 */
+.pain-hero{
+  position:relative;height:220px;overflow:hidden;
+}
+.pain-hero img{
+  width:100%;height:100%;object-fit:cover;object-position:center 30%;
+  filter:brightness(.45) saturate(.8);
+}
+.pain-hero-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to right,rgba(13,27,46,.9) 0%,rgba(13,27,46,.5) 100%);
+}
+.pain-hero-text{
+  position:absolute;inset:0;
+  display:flex;flex-direction:column;justify-content:center;
+  padding:0 24px;
+}
+.pain-hero-text .label{
+  font-size:10px;font-weight:700;color:var(--orange);
+  letter-spacing:.18em;text-transform:uppercase;margin-bottom:8px;
+}
+.pain-hero-text h2{
+  font-family:'Noto Serif KR',serif;
+  font-size:clamp(1.15rem,4vw,1.6rem);font-weight:900;
+  color:var(--white);line-height:1.4;
+}
+/* 카드 영역 */
+.pain-body{padding:24px 20px}
+.quote-card{
+  background:#faf8f5;border-left:3px solid var(--orange);
+  border-radius:0 .6rem .6rem 0;
+  padding:13px 15px;margin-bottom:10px;
+}
+.quote-card p{font-size:12.5px;color:#4a5568;line-height:1.85;font-style:italic}
+.quote-card .src{font-size:11px;color:#aaa;margin-top:5px;font-style:normal}
+.pain-cause{
+  background:linear-gradient(135deg,#fff5f0,#fff8f5);
+  border:1px solid rgba(232,115,42,.2);
+  border-radius:.75rem;padding:18px;margin-top:6px;
+}
+.pain-cause h3{
+  font-size:13px;font-weight:700;color:#c0392b;
+  margin-bottom:11px;line-height:1.55;
+}
+.cause-item{
+  display:flex;align-items:flex-start;gap:7px;
+  font-size:12.5px;color:#555;line-height:1.9;
+}
+.cause-item .x{color:#e74c3c;font-weight:900;flex-shrink:0;font-size:14px}
+.pain-cta-btn{
+  display:block;width:100%;background:var(--orange);color:#fff;
+  font-size:13px;font-weight:700;padding:13px;border-radius:.5rem;
+  text-decoration:none;text-align:center;margin-top:16px;
+  transition:background .2s;
+}
+.pain-cta-btn:hover{background:#cf6224}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   COMPARE — 어두운 배경 + 이미지
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.compare-sec{background:var(--navy);padding:0}
+/* 이미지 상단 띠 */
+.compare-img-band{
+  position:relative;height:180px;overflow:hidden;
+}
+.compare-img-band img{
+  width:100%;height:100%;object-fit:cover;object-position:center 60%;
+  filter:brightness(.35) saturate(.7);
+}
+.compare-img-band::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to bottom,transparent 30%,var(--navy) 100%);
+}
+.compare-body{padding:0 20px 32px}
+.compare-sec .sec-label{color:var(--gold)}
+.compare-sec .sec-h2{color:var(--white)}
+.compare-sec .sec-p{color:rgba(255,255,255,.38)}
+.compare-table{width:100%;border-collapse:collapse;font-size:12px;margin-top:16px}
+.compare-table thead tr{background:rgba(255,255,255,.06)}
+.compare-table thead th{
+  padding:10px 9px;color:rgba(255,255,255,.42);
+  font-weight:700;text-align:left;
+  border-bottom:1px solid rgba(255,255,255,.07);
+}
+.compare-table thead th.hl{color:var(--gold)}
+.compare-table tbody tr{border-bottom:1px solid rgba(255,255,255,.05)}
+.compare-table tbody tr:nth-child(even){background:rgba(255,255,255,.03)}
+.compare-table td{padding:10px 9px;color:rgba(255,255,255,.55);vertical-align:middle}
+.compare-table td:first-child{color:#fff;font-weight:700}
+.compare-table .bad{color:#e74c3c;font-weight:700}
+.compare-table .good{color:var(--gold);font-weight:900}
+.compare-table .ok{color:#2ecc71;font-weight:700}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   HOW 50% — 이미지 카드형
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.how-sec{background:var(--cream);padding:42px 20px}
+/* 이미지 + 카드 side by side (모바일은 stacked) */
+.how-img-wrap{
+  position:relative;border-radius:.85rem;overflow:hidden;
+  margin-bottom:20px;
+  box-shadow:0 8px 32px rgba(0,0,0,.15);
+}
+.how-img-wrap img{
+  width:100%;height:220px;object-fit:cover;object-position:center;
+  filter:brightness(.75) saturate(.9);
+}
+.how-img-wrap::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(13,27,46,.6) 0%,transparent 60%);
+}
+.how-img-badge{
+  position:absolute;bottom:16px;left:16px;z-index:1;
+  background:var(--orange);color:#fff;
+  font-size:11px;font-weight:700;padding:6px 13px;border-radius:20px;
+}
+.how-card{
+  background:#fff;border-radius:.75rem;
+  padding:15px;margin-bottom:10px;
+  display:flex;gap:13px;align-items:flex-start;
+  box-shadow:0 2px 10px rgba(0,0,0,.06);
+  border:1px solid #ede9e2;
+  transition:box-shadow .2s,transform .2s;
+}
+.how-card:hover{box-shadow:0 6px 22px rgba(0,0,0,.1);transform:translateY(-2px)}
+.how-num{
+  width:30px;height:30px;flex-shrink:0;
+  border-radius:.45rem;background:var(--orange);
+  color:#fff;font-weight:900;font-size:13px;
+  display:flex;align-items:center;justify-content:center;
+  margin-top:1px;
+}
+.how-body h3{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:4px}
+.how-body p{font-size:12px;color:var(--muted);line-height:1.75}
+.how-cta{
+  display:block;width:100%;background:var(--orange);color:#fff;
+  font-size:13px;font-weight:700;padding:13px;border-radius:.5rem;
+  text-decoration:none;text-align:center;margin-top:16px;
+  transition:background .2s;
+}
+.how-cta:hover{background:#cf6224}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   STEPS — 이미지 + 타임라인
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.step-sec{background:#fff;padding:0}
+/* 이미지 배너 */
+.step-banner{
+  position:relative;height:200px;overflow:hidden;
+}
+.step-banner img{
+  width:100%;height:100%;object-fit:cover;object-position:center 35%;
+  filter:brightness(.4) saturate(.8);
+}
+.step-banner::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to bottom,rgba(13,27,46,.3),var(--navy) 100%);
+}
+.step-banner-text{
+  position:absolute;inset:0;z-index:1;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:20px 22px;
+}
+.step-banner-text .label{
+  font-size:10px;font-weight:700;color:var(--orange);
+  letter-spacing:.15em;text-transform:uppercase;margin-bottom:5px;
+}
+.step-banner-text h2{
+  font-family:'Noto Serif KR',serif;
+  font-size:clamp(1.15rem,4vw,1.55rem);font-weight:900;color:#fff;line-height:1.4;
+}
+.step-body-wrap{
+  background:var(--navy);padding:24px 20px;
+}
+.step-item{
+  display:flex;gap:14px;align-items:flex-start;
+  margin-bottom:16px;padding-bottom:16px;
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+.step-item:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none}
+.step-num{
+  width:34px;height:34px;border-radius:50%;flex-shrink:0;
+  background:var(--orange);color:#fff;
+  font-weight:900;font-size:14px;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 0 0 4px rgba(232,115,42,.18);
+}
+.step-content .period{font-size:10px;color:var(--orange);font-weight:700;letter-spacing:.08em;margin-bottom:3px}
+.step-content h3{font-size:13px;font-weight:700;color:#fff;margin-bottom:5px}
+.step-content ul{padding-left:14px}
+.step-content ul li{font-size:12px;color:rgba(255,255,255,.55);line-height:1.9}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   TESTIMONIALS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.testi-sec{background:var(--cream);padding:0}
+/* 이미지 배너 */
+.testi-banner{
+  position:relative;height:190px;overflow:hidden;
+}
+.testi-banner img{
+  width:100%;height:100%;object-fit:cover;object-position:center 25%;
+  filter:brightness(.38) saturate(.75);
+}
+.testi-banner::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(13,27,46,.85) 0%,rgba(13,27,46,.4) 100%);
+}
+.testi-banner-text{
+  position:absolute;inset:0;z-index:1;
+  display:flex;flex-direction:column;justify-content:center;
+  padding:0 22px;
+}
+.testi-banner-text .label{
+  font-size:10px;font-weight:700;color:var(--gold);
+  letter-spacing:.15em;text-transform:uppercase;margin-bottom:8px;
+}
+.testi-banner-text h2{
+  font-family:'Noto Serif KR',serif;
+  font-size:clamp(1.1rem,4vw,1.5rem);font-weight:900;color:#fff;line-height:1.4;
+}
+.testi-body{padding:24px 20px}
+.testi-card{
+  background:#fff;border-radius:.75rem;
+  padding:18px;margin-bottom:12px;
+  border:1px solid #ede9e2;
+  box-shadow:0 2px 10px rgba(0,0,0,.05);
+}
+.testi-stars{color:var(--gold);font-size:14px;margin-bottom:9px;letter-spacing:.05em}
+.testi-text{font-size:12.5px;color:#4a5568;line-height:1.9;font-style:italic;margin-bottom:9px}
+.testi-text strong{color:var(--orange);font-style:normal}
+.testi-name{font-size:11px;color:#aaa;font-weight:700}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   APPLY FORM
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.apply-sec{background:#fff;padding:42px 20px}
+.form-box{
+  background:#fff;border-radius:1rem;overflow:hidden;
+  box-shadow:0 6px 30px rgba(0,0,0,.1);
+  border:1px solid #ede9e2;
+}
+.form-header{
+  position:relative;overflow:hidden;
+  background:var(--navy);padding:22px 22px 20px;
+}
+/* 폼 헤더 배경 이미지 */
+.form-header-bg{
+  position:absolute;inset:0;
+  background:url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=700&q=70')
+    center/cover;
+  opacity:.12;
+}
+.form-header-content{position:relative;z-index:1;border-top:2px solid var(--orange)}
+.form-header-content h3{
+  font-size:15px;font-weight:900;color:#fff;
+  margin:14px 0 4px;
+}
+.form-header-content p{font-size:11px;color:rgba(255,255,255,.45)}
+.form-body-inner{padding:20px}
+.fg{margin-bottom:12px}
+.fg label{display:block;font-size:12px;font-weight:700;color:var(--navy);margin-bottom:4px}
+.fg input,.fg select{
+  width:100%;padding:11px 13px;
+  border:1.5px solid #ddd;border-radius:.45rem;
+  font-size:13px;font-family:'Noto Sans KR',sans-serif;
+  background:#fff;color:#222;outline:none;
+  -webkit-appearance:none;
+  transition:border-color .2s,background .2s;
+}
+.fg input:focus,.fg select:focus{border-color:var(--orange);background:#fff9f6}
+.fg input::placeholder{color:#bbb}
+.fg select option{color:#222}
+.agree-box{
+  background:#faf8f5;border:1px solid #e0dbd3;border-radius:.45rem;
+  padding:10px 12px;margin-bottom:10px;
+  max-height:68px;overflow-y:auto;
+  font-size:10.5px;color:#999;line-height:1.75;
+}
+.agree-label{
+  display:flex;align-items:center;gap:7px;
+  font-size:12px;color:#444;margin-bottom:13px;cursor:pointer;
+}
+.agree-label input[type=checkbox]{width:15px;height:15px;accent-color:var(--orange);cursor:pointer}
+/* 지역 멀티선택 */
+.region-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:4px}
+.region-item{display:flex;align-items:center;gap:6px;padding:9px 10px;border:1.5px solid #ddd;border-radius:.45rem;cursor:pointer;font-size:12.5px;font-weight:500;color:#444;transition:all .18s;user-select:none}
+.region-item:hover{border-color:var(--orange);background:#fff9f6}
+.region-item input[type=checkbox]{display:none}
+.region-item.selected{border-color:var(--orange);background:#fff3eb;color:var(--orange);font-weight:700}
+.region-item.disabled{opacity:.4;cursor:not-allowed;pointer-events:none}
+.region-hint{font-size:11px;color:#888;margin-top:6px;padding:5px 8px;background:#faf8f5;border-radius:.3rem}
+.region-hint strong{color:var(--orange)}
+/* 진행률 바 */
+.progress-wrap{background:var(--navy2);padding:8px 22px}
+.progress-label{font-size:10px;color:rgba(255,255,255,.4);margin-bottom:4px;display:flex;justify-content:space-between}
+.progress-label span{color:var(--orange);font-weight:700}
+.progress-track{height:3px;background:rgba(255,255,255,.1);border-radius:2px;overflow:hidden}
+.progress-fill{height:100%;width:0%;border-radius:2px;background:linear-gradient(90deg,var(--orange),var(--gold,#E8B84B));transition:width .3s}
+/* 스피너 */
+@keyframes spin{to{transform:rotate(360deg)}}
+.spinner{width:16px;height:16px;border:2px solid rgba(255,255,255,.4);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;display:none;margin-right:6px}
+.form-submit.loading .spinner{display:inline-block}
+
+.form-submit{
+  width:100%;padding:14px;
+  background:var(--orange);color:#fff;
+  font-size:15px;font-weight:700;border:none;
+  border-radius:.5rem;cursor:pointer;
+  font-family:'Noto Sans KR',sans-serif;
+  transition:background .2s,transform .15s;
+}
+.form-submit:hover{background:#cf6224;transform:scale(1.01)}
+.form-success{
+  display:none;padding:30px 20px;text-align:center;
+}
+.form-success .icon{font-size:42px;margin-bottom:10px}
+.form-success h3{font-size:15px;font-weight:900;color:var(--navy);margin-bottom:6px}
+.form-success p{font-size:12px;color:var(--muted);line-height:1.8}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   STATS BAR
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.stats-bar{background:var(--orange);display:flex}
+.stat-cell{flex:1;padding:17px 8px;text-align:center;border-right:1px solid rgba(255,255,255,.2)}
+.stat-cell:last-child{border-right:none}
+.stat-num{font-size:16px;font-weight:900;color:#fff;display:block}
+.stat-label{font-size:10px;color:rgba(255,255,255,.7);margin-top:2px}
+.stats-cta-btn{
+  display:block;background:var(--navy2);color:#fff;
+  font-size:14px;font-weight:700;padding:14px;
+  text-align:center;text-decoration:none;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   PRODUCT — 이미지 전면 배치
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.product-sec{background:var(--cream);padding:42px 20px;text-align:center}
+.product-img-frame{
+  position:relative;border-radius:1rem;overflow:hidden;
+  margin:20px 0;
+  box-shadow:0 10px 40px rgba(0,0,0,.15);
+}
+.product-img-frame img{width:100%;display:block}
+.product-img-frame::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(13,27,46,.6) 0%,transparent 50%);
+}
+.product-img-label{
+  position:absolute;bottom:16px;left:16px;z-index:1;
+  font-size:12px;font-weight:700;color:#fff;
+  background:rgba(232,115,42,.85);padding:6px 12px;border-radius:.4rem;
+}
+.product-cta{
+  display:block;width:100%;background:var(--orange);color:#fff;
+  font-size:13px;font-weight:700;padding:13px;border-radius:.5rem;
+  text-decoration:none;text-align:center;transition:background .2s;
+}
+.product-cta:hover{background:#cf6224}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   VISION — 이미지 배경
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.vision-sec{background:var(--navy);padding:0}
+.vision-img-band{
+  position:relative;height:220px;overflow:hidden;
+}
+.vision-img-band img{
+  width:100%;height:100%;object-fit:cover;object-position:center;
+  filter:brightness(.3) saturate(.8);
+}
+.vision-img-band::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to bottom,transparent 40%,var(--navy) 100%);
+}
+.vision-body{padding:0 20px 32px}
+.vision-sec .sec-label{color:var(--gold)}
+.vision-sec .sec-h2{color:#fff}
+.vision-sec .sec-p{color:rgba(255,255,255,.45)}
+.v-item{
+  display:flex;align-items:flex-start;gap:8px;
+  font-size:13px;color:rgba(255,255,255,.75);
+  line-height:1.9;margin-bottom:7px;
+}
+.v-item .ck{color:var(--orange);font-weight:900;font-size:15px;flex-shrink:0;margin-top:1px}
+.vision-cta{
+  display:block;width:100%;background:var(--orange);color:#fff;
+  font-size:13px;font-weight:700;padding:13px;border-radius:.5rem;
+  text-decoration:none;text-align:center;margin-top:18px;transition:background .2s;
+}
+.vision-cta:hover{background:#cf6224}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   PARTNERS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.partner-sec{background:#fff;padding:42px 20px;text-align:center}
+.partner-sec .sec-h2{text-align:center}
+.partner-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:8px;margin:20px 0;
+}
+.partner-grid img{
+  width:100%;border-radius:.4rem;
+  filter:grayscale(25%);opacity:.85;
+  transition:filter .2s,opacity .2s;
+}
+.partner-grid img:hover{filter:none;opacity:1}
+.partner-cta{
+  display:block;width:100%;background:var(--orange);color:#fff;
+  font-size:13px;font-weight:700;padding:13px;border-radius:.5rem;
+  text-decoration:none;text-align:center;transition:background .2s;
+}
+.partner-cta:hover{background:#cf6224}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   FOOTER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+footer{background:#07101e;padding:28px 20px;text-align:center}
+.footer-logo img{height:22px;opacity:.55;margin:0 auto 12px}
+.footer-divider{height:1px;background:rgba(255,255,255,.07);margin:12px 0}
+.footer-info{font-size:11px;color:rgba(255,255,255,.28);line-height:2.2}
+.footer-info a{color:rgba(255,255,255,.45);text-decoration:none}
+.footer-copy{font-size:10px;color:rgba(255,255,255,.15);margin-top:10px}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   FLOATING CTA (모바일)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.float-cta{
+  position:fixed;bottom:0;left:0;right:0;z-index:998;
+  transform:translateY(100%);transition:transform .35s ease;
+  box-shadow:0 -4px 20px rgba(0,0,0,.25);
+}
+.float-cta.show{transform:none}
+.float-cta a{
+  display:block;background:var(--orange);color:#fff;
+  font-size:15px;font-weight:700;padding:16px;
+  text-align:center;text-decoration:none;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   반응형
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+@media(min-width:580px){
+  .float-cta{display:none}
+  .pain-hero,.compare-img-band,.step-banner,.testi-banner,.vision-img-band{height:260px}
+  .how-img-wrap img{height:280px}
+  .quote-wrap{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .quote-card{margin-bottom:0}
+  .how-cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+  .how-card{margin-bottom:0}
+  .testi-cards{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .testi-card{margin-bottom:0}
+  .step-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .step-item{margin-bottom:0;padding-bottom:0;border-bottom:none}
+  .partner-grid{grid-template-columns:repeat(6,1fr)}
+}
+@media(min-width:800px){
+  .sec{padding:56px 2rem}
+  .pain-hero,.compare-img-band,.step-banner,.testi-banner,.vision-img-band{height:300px}
+}
 </style>
 </head>
 <body>
 
-<!-- URGENCY BAR -->
-<div class="urgency-bar">
-  ⚠️ &nbsp;<em>텍사스 법인설립 포럼 신청 마감</em>&nbsp;<strong>2026년 3월 30일</strong>&nbsp;·&nbsp;잔여석 소수 &nbsp;—&nbsp;
-  <a href="#texas">지금 신청하기 →</a>
-</div>
-
-<!-- HEADER -->
-<header id="mainHeader">
-  <a href="#" class="logo">KFP<span style="color:rgba(255,255,255,.45)">export</span></a>
-  <nav>
-    <a href="#markets">5개 시장</a>
-    <a href="#services">서비스</a>
-    <a href="#texas">텍사스 법인</a>
-    <a href="#process">진행 과정</a>
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfZjaBgfQaWdaRvsUtdEwBb8Q_ciKfr8w8dc3I7qAXTF5mG6g/viewform" target="_blank" class="nav-cta">무료 상담 신청</a>
-  </nav>
-</header>
-
-<!-- HERO -->
-<section class="hero">
-  <div class="h-canvas"></div>
-  <div class="h-grid"></div>
-  <div class="h-orb orb1"></div>
-  <div class="h-orb orb2"></div>
-  <div class="h-content">
-    <div class="h-eyebrow"><div class="pdot"></div>KFP EXPORT · 해외 수출 전문 파트너</div>
-    <h1>글로벌 바이어,<br><span class="gold">60일</span> 안에<br><span class="it">만날 수 있습니다</span></h1>
-    <p class="h-desc"><strong>5개 시장 · 2.5억 검증 바이어 DB</strong>를 보유한 전문 수출팀이<br>발굴부터 계약, 미국 법인 설립까지 처음부터 끝을 함께합니다.</p>
-    <div class="mf-row">
-      <div class="mf" onclick="goMarket('us',0)">🇺🇸 미국·텍사스</div>
-      <div class="mf" onclick="goMarket('jp',3)">🇯🇵 일본</div>
-      <div class="mf" onclick="goMarket('eu',1)">🇪🇺 유럽</div>
-      <div class="mf" onclick="goMarket('sea',2)">🌏 동남아</div>
-      <div class="mf" onclick="goMarket('cn',4)">🇨🇳 중국·홍콩</div>
-    </div>
-    <div class="h-ctas">
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSfZjaBgfQaWdaRvsUtdEwBb8Q_ciKfr8w8dc3I7qAXTF5mG6g/viewform" target="_blank" class="btn-gold">🚀 무료 상담 신청하기</a>
-      <a href="#process" class="btn-ghost">진행 과정 보기 →</a>
-    </div>
-    <div class="h-kpis">
-      <div class="hkpi"><span class="hkpi-n">2.5억</span><div class="hkpi-l">글로벌 바이어 DB</div></div>
-      <div class="hkpi"><span class="hkpi-n">20%</span><div class="hkpi-l">평균 이메일 오픈율</div></div>
-      <div class="hkpi"><span class="hkpi-n">60일</span><div class="hkpi-l">첫 바이어 미팅 목표</div></div>
-      <div class="hkpi"><span class="hkpi-n">5개</span><div class="hkpi-l">타겟 시장</div></div>
-      <div class="hkpi"><span class="hkpi-n">5~15%</span><div class="hkpi-l">바이어 응답률</div></div>
-    </div>
+<!-- ══ NAV ══ -->
+<nav class="nav">
+  <div class="nav-logo">
+    <img src="https://cdn.imweb.me/thumbnail/20251109/c24d626c107a2.png" alt="한국재무설계"
+      onerror="this.style.display='none'">
+    <div class="nav-logo-txt">한국재무설계 <em>KFP</em></div>
   </div>
-</section>
+  <a href="#apply" class="nav-cta">해외 바이어 매칭하기</a>
+</nav>
 
-<!-- TICKER -->
-<div class="ticker-wrap">
-  <div class="ticker-inner">
-    <div class="t-item">🇺🇸 미국 제조 바이어 <span>↑</span></div>
-    <div class="t-item">🇯🇵 일본 B2B 파트너 <span>↑</span></div>
-    <div class="t-item">🇪🇺 유럽 K-소비재 <span>↑</span></div>
-    <div class="t-item">🌏 베트남·태국·인도네시아 <span>↑</span></div>
-    <div class="t-item">🇨🇳 중국·홍콩 유통 <span>↑</span></div>
-    <div class="t-item">⭐ 텍사스 법인설립 원스톱 <span>→</span></div>
-    <div class="t-item">📊 수출전략 PEST·SWOT·STP <span>↑</span></div>
-    <div class="t-item">🇺🇸 미국 제조 바이어 <span>↑</span></div>
-    <div class="t-item">🇯🇵 일본 B2B 파트너 <span>↑</span></div>
-    <div class="t-item">🇪🇺 유럽 K-소비재 <span>↑</span></div>
-    <div class="t-item">🌏 베트남·태국·인도네시아 <span>↑</span></div>
-    <div class="t-item">🇨🇳 중국·홍콩 유통 <span>↑</span></div>
-    <div class="t-item">⭐ 텍사스 법인설립 원스톱 <span>→</span></div>
-    <div class="t-item">📊 수출전략 PEST·SWOT·STP <span>↑</span></div>
+<!-- ══ HERO — 글로벌 도시 야경 배경 ══ -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-content">
+    <div class="hero-badge">🌏 AI 기반 · 해외 바이어 발굴 서비스</div>
+    <h1>기업의 운명을 바꿀<br><em>해외 바이어</em>를 만나세요</h1>
+    <p class="hero-sub">
+      요청 메일이 쏟아지는 AI 기반 해외 바이어 매칭 서비스<br>
+      한국재무설계가 당신을 수출기업으로 만들어냅니다
+    </p>
+    <div class="hero-kpi">
+      <div class="hero-kpi-item">
+        <span class="hero-kpi-num">50%</span>
+        <div class="hero-kpi-label">이메일 오픈율</div>
+      </div>
+      <div class="hero-kpi-item">
+        <span class="hero-kpi-num">4배</span>
+        <div class="hero-kpi-label">수출량 증가</div>
+      </div>
+      <div class="hero-kpi-item">
+        <span class="hero-kpi-num">2.5억</span>
+        <div class="hero-kpi-label">바이어 DB</div>
+      </div>
+    </div>
+    <div class="hero-cta-wrap">
+      <a href="#apply" class="btn-primary">🎯 무료 상담 받기</a>
+      <a href="#how" class="btn-ghost2">서비스 자세히 보기 ↓</a>
+    </div>
+    <p class="hero-note">신청 후 24시간 이내 전문 컨설턴트가 직접 연락드립니다</p>
+  </div>
+  <div class="scroll-hint">
+    <span>SCROLL</span>
+    <div class="scroll-dot"></div>
   </div>
 </div>
 
-<!-- MARKETS VISUAL STRIP -->
-<section class="markets-strip">
-  <div class="ms-head">
-    <div class="ms-label">5 Target Markets</div>
-    <h2>귀사가 진출할 시장을<br>선택하세요</h2>
-  </div>
-  <div class="ms-grid">
-    <div class="ms-card" onclick="document.getElementById('markets').scrollIntoView({behavior:'smooth'});switchM('us',document.querySelectorAll('.mtab')[0])">
-      <div class="ms-img"><img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=600&q=80" alt="미국"></div>
-      <div class="ms-overlay"></div>
-      <div class="ms-sel-ring"></div>
-      <div class="ms-arrow">→</div>
-      <div class="ms-info">
-        <span class="ms-flag">🇺🇸</span>
-        <div class="ms-name">미국·텍사스</div>
-        <div class="ms-sub">법인설립 연계</div>
-      </div>
+<!-- ══ INTRO ══ -->
+<div class="intro">
+  <div class="intro-bg"></div>
+  <div class="intro-inner inner">
+    <h2 class="reveal">한국재무설계가<br>당신을 <em>수출기업</em>으로 만들어냅니다</h2>
+    <p class="reveal">우리는 30일 내에 귀사 제품을 해외 바이어에게 연결합니다</p>
+    <div class="intro-card reveal">
+      <em>우리</em> 은(는) 30일 내에 <em>[귀사 목표 지역]</em> 에 수출할 것이다!
     </div>
-    <div class="ms-card" onclick="document.getElementById('markets').scrollIntoView({behavior:'smooth'});switchM('eu',document.querySelectorAll('.mtab')[1])">
-      <div class="ms-img"><img src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=600&q=80" alt="유럽"></div>
-      <div class="ms-overlay"></div>
-      <div class="ms-sel-ring"></div>
-      <div class="ms-arrow">→</div>
-      <div class="ms-info">
-        <span class="ms-flag">🇪🇺</span>
-        <div class="ms-name">유럽</div>
-        <div class="ms-sub">K-브랜드 소비재</div>
-      </div>
-    </div>
-    <div class="ms-card" onclick="document.getElementById('markets').scrollIntoView({behavior:'smooth'});switchM('sea',document.querySelectorAll('.mtab')[2])">
-      <div class="ms-img"><img src="https://images.unsplash.com/photo-1525625293386-3f8f99389edd?w=600&q=80" alt="동남아"></div>
-      <div class="ms-overlay"></div>
-      <div class="ms-sel-ring"></div>
-      <div class="ms-arrow">→</div>
-      <div class="ms-info">
-        <span class="ms-flag">🌏</span>
-        <div class="ms-name">동남아</div>
-        <div class="ms-sub">한류 최강 시장</div>
-      </div>
-    </div>
-    <div class="ms-card" onclick="document.getElementById('markets').scrollIntoView({behavior:'smooth'});switchM('jp',document.querySelectorAll('.mtab')[3])">
-      <div class="ms-img"><img src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=600&q=80" alt="일본"></div>
-      <div class="ms-overlay"></div>
-      <div class="ms-sel-ring"></div>
-      <div class="ms-arrow">→</div>
-      <div class="ms-info">
-        <span class="ms-flag">🇯🇵</span>
-        <div class="ms-name">일본</div>
-        <div class="ms-sub">B2B 파트너십</div>
-      </div>
-    </div>
-    <div class="ms-card" onclick="document.getElementById('markets').scrollIntoView({behavior:'smooth'});switchM('cn',document.querySelectorAll('.mtab')[4])">
-      <div class="ms-img"><img src="https://images.unsplash.com/photo-1536599018102-9f803c140fc1?w=600&q=80" alt="중국 홍콩"></div>
-      <div class="ms-overlay"></div>
-      <div class="ms-sel-ring"></div>
-      <div class="ms-arrow">→</div>
-      <div class="ms-info">
-        <span class="ms-flag">🇨🇳</span>
-        <div class="ms-name">중국·홍콩</div>
-        <div class="ms-sub">중화권 유통채널</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PAIN -->
-<section class="sec pain-sec" id="pain">
-  <div class="sw">
-    <div class="sey fu">The Problem</div>
-    <h2 class="sh2 fu d1">혼자 해외시장 문 두드리다<br>지쳐가고 계신가요?</h2>
-    <div class="pain-grid">
-      <div class="pain-card fu d1"><div class="pain-icon">💸</div><p>"해외 전시회 3번 참가에 7천만 원 썼는데, 실제 계약 0건. 명함만 300장 모아왔어요."</p><div class="pain-src">— 서울 중소 제조업체 대표</div></div>
-      <div class="pain-card fu d2"><div class="pain-icon">🔍</div><p>"링크드인으로 바이어를 직접 찾아보는데, 하루 종일 해도 10명도 못 찾고 연락도 다 무시당해요."</p><div class="pain-src">— 뷰티 브랜드 수출 담당자</div></div>
-      <div class="pain-card fu d3"><div class="pain-icon">📧</div><p>"KOTRA 바이어 리스트 받아서 이메일 보내봤자 오픈율이 2~3%도 안 돼요. 뭘 잘못하는 건지."</p><div class="pain-src">— IT 소프트웨어 스타트업 대표</div></div>
-    </div>
-    <div class="pain-root fu d2">
-      <div class="pain-root-icon">🎯</div>
-      <p><strong>핵심 문제는 딱 하나입니다.</strong> 검증된 바이어 DB가 없고, 업종·제품에 맞는 1:1 맞춤 메시지가 없고, 접촉 후 후속 관리 시스템이 없다. KFP Export는 이 세 가지를 모두 해결합니다.</p>
-    </div>
-  </div>
-</section>
-
-
-<!-- IMAGE BAND: 미국 -->
-<div class="ib">
-  <img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1600&q=75" alt="뉴욕">
-  <div class="ibo ib-l">
-    <div class="ibt">
-      <div class="ib-tag">🇺🇸 USA MARKET</div>
-      <h2>미국 시장,<br><span>지금이 진입 골든타임</span></h2>
-      <p>한-미 FTA + K-콘텐츠 붐으로<br>미국 바이어들이 한국 제품을 찾고 있습니다.</p>
-      <a href="#markets" onclick="goMarket('us',0)" class="btn-gold">미국 시장 전략 보기</a>
-    </div>
+    <a href="#apply" class="btn-primary reveal" style="max-width:300px;margin:0 auto;">지금 신청하기</a>
   </div>
 </div>
-<!-- 5 MARKETS -->
-<section class="sec mkt-sec" id="markets">
-  <div class="sw">
-    <div class="sey fu">5 Target Markets</div>
-    <h2 class="sh2 fu d1">5개 시장,<br>동시에 공략합니다</h2>
-    <p class="slead fu d2">단일 시장 의존에서 벗어나 5개 시장 포트폴리오로 안정적인 해외 매출을 구축하세요.</p>
-    <div class="mtabs fu d2">
-      <button class="mtab active" onclick="switchM('us',this)">🇺🇸 미국</button>
-      <button class="mtab" onclick="switchM('eu',this)">🇪🇺 유럽</button>
-      <button class="mtab" onclick="switchM('sea',this)">🌏 동남아</button>
-      <button class="mtab" onclick="switchM('jp',this)">🇯🇵 일본</button>
-      <button class="mtab" onclick="switchM('cn',this)">🇨🇳 중국·홍콩</button>
-    </div>
-    <div class="mpanel active" id="pm-us">
-      <div class="mpi">
-        <h3>미국 · <em>최우선 시장</em></h3>
-        <p>한-미 FTA로 관세 혜택이 가장 크고, K-콘텐츠 붐으로 소비자 인지도가 급상승 중입니다. 텍사스를 거점으로 현지법인 설립까지 원스톱으로 지원합니다.</p>
-        <div class="mp-stats">
-          <div class="mp-s"><div class="mp-sv">$26T</div><div class="mp-sk">미국 GDP</div></div>
-          <div class="mp-s"><div class="mp-sv">0%</div><div class="mp-sk">한-미 FTA 관세율</div></div>
-          <div class="mp-s"><div class="mp-sv">3위</div><div class="mp-sk">한국 수출 대상국</div></div>
-          <div class="mp-s"><div class="mp-sv">TX</div><div class="mp-sk">법인설립 거점</div></div>
-        </div>
-        <a href="#texas" class="btn-gold" style="font-size:14px;padding:12px 28px;">텍사스 법인설립 알아보기 →</a>
+
+<!-- ══ KPI ══ -->
+<section class="kpi-sec">
+  <div class="inner">
+    <h2 class="sec-h2 reveal" style="text-align:center;margin-bottom:6px;">압도적인 AI 바이어 매칭 성과</h2>
+    <p class="sec-p reveal" style="text-align:center;margin-bottom:20px;">비효율은 없습니다. 오직 성장만 있습니다.</p>
+    <div class="kpi-row reveal-scale">
+      <div class="kpi-cell">
+        <span class="kpi-icon">📧</span>
+        <span class="kpi-num" data-target="50" data-suffix="%">50%</span>
+        <div class="kpi-title">이메일 오픈율</div>
+        <div class="kpi-desc">업계 평균 5% 대비 10배</div>
       </div>
-      <div class="mp-strats">
-        <div class="mps"><div class="mps-ic">🏭</div><div><h4>제조·부품 B2B</h4><p>현지 제조사 직납 채널 구축 / 유통망 확보</p></div></div>
-        <div class="mps"><div class="mps-ic">💄</div><div><h4>K-뷰티·K-푸드 리테일</h4><p>아마존 입점 + Whole Foods 납품 채널</p></div></div>
-        <div class="mps"><div class="mps-ic">💻</div><div><h4>IT·SaaS B2B</h4><p>실리콘밸리·텍사스 테크 기업 파트너십</p></div></div>
+      <div class="kpi-cell">
+        <span class="kpi-icon">📈</span>
+        <span class="kpi-num">4배</span>
+        <div class="kpi-title">수출량 증가</div>
+        <div class="kpi-desc">기존 대비</div>
       </div>
-    </div>
-    <div class="mpanel" id="pm-jp">
-      <div class="mpi">
-        <h3>일본 · <em>1순위 시장</em></h3>
-        <p>지리적 근접성과 문화적 유사성으로 진입 장벽이 낮고, 한국 제품 선호도가 지속 상승 중입니다. 장기 B2B 파트너십 구축에 최적의 시장입니다.</p>
-        <div class="mp-stats">
-          <div class="mp-s"><div class="mp-sv">$4.2T</div><div class="mp-sk">일본 GDP</div></div>
-          <div class="mp-s"><div class="mp-sv">2위</div><div class="mp-sk">한국 수출 대상국</div></div>
-          <div class="mp-s"><div class="mp-sv">18곳</div><div class="mp-sk">평균 바이어 접촉(2주)</div></div>
-          <div class="mp-s"><div class="mp-sv">JA</div><div class="mp-sk">일본어 직발송</div></div>
-        </div>
-      </div>
-      <div class="mp-strats">
-        <div class="mps"><div class="mps-ic">🤝</div><div><h4>총판·대리점 계약</h4><p>도쿄·오사카 현지 유통 파트너 매칭</p></div></div>
-        <div class="mps"><div class="mps-ic">🛒</div><div><h4>이커머스 입점</h4><p>라쿠텐·아마존JP·큐텐 채널 구축</p></div></div>
-        <div class="mps"><div class="mps-ic">🏢</div><div><h4>기업 직납 B2B</h4><p>제조·IT·소비재 현지 기업 직접 납품</p></div></div>
-      </div>
-    </div>
-    <div class="mpanel" id="pm-eu">
-      <div class="mpi">
-        <h3>유럽 · <em>2순위 시장</em></h3>
-        <p>한-EU FTA로 27개국 무관세 혜택. K-뷰티, K-푸드, 친환경 제품에 대한 수요가 폭발적으로 증가 중입니다.</p>
-        <div class="mp-stats">
-          <div class="mp-s"><div class="mp-sv">27국</div><div class="mp-sk">한-EU FTA 적용</div></div>
-          <div class="mp-s"><div class="mp-sv">4.5억</div><div class="mp-sk">EU 소비 인구</div></div>
-          <div class="mp-s"><div class="mp-sv">독·프·영</div><div class="mp-sk">주요 거점 3개국</div></div>
-          <div class="mp-s"><div class="mp-sv">EN/DE</div><div class="mp-sk">맞춤 언어 발송</div></div>
-        </div>
-      </div>
-      <div class="mp-strats">
-        <div class="mps"><div class="mps-ic">💚</div><div><h4>친환경·K-뷰티</h4><p>독일·프랑스 친환경 리테일 채널</p></div></div>
-        <div class="mps"><div class="mps-ic">🍜</div><div><h4>K-푸드 유통</h4><p>영국·네덜란드 아시안 푸드 체인 납품</p></div></div>
-        <div class="mps"><div class="mps-ic">🔩</div><div><h4>정밀부품 B2B</h4><p>독일 자동차·기계 산업 공급망 진입</p></div></div>
-      </div>
-    </div>
-    <div class="mpanel" id="pm-sea">
-      <div class="mpi">
-        <h3>동남아 · <em>황금 타이밍</em></h3>
-        <p>한류의 힘이 가장 강한 시장. 6억 5천만 인구의 빠른 성장세와 디지털 전환으로 한국 브랜드에 문이 넓게 열려 있습니다.</p>
-        <div class="mp-stats">
-          <div class="mp-s"><div class="mp-sv">6.5억</div><div class="mp-sk">ASEAN 인구</div></div>
-          <div class="mp-s"><div class="mp-sv">5.3%</div><div class="mp-sk">평균 GDP 성장률</div></div>
-          <div class="mp-s"><div class="mp-sv">VN/TH</div><div class="mp-sk">핵심 2개국</div></div>
-          <div class="mp-s"><div class="mp-sv">한류</div><div class="mp-sk">최고 우호 시장</div></div>
-        </div>
-      </div>
-      <div class="mp-strats">
-        <div class="mps"><div class="mps-ic">🇻🇳</div><div><h4>베트남 제조·소비재</h4><p>하노이·호치민 B2B 유통 파트너 발굴</p></div></div>
-        <div class="mps"><div class="mps-ic">🇹🇭</div><div><h4>태국 K-뷰티</h4><p>방콕 리테일 체인 + 이커머스 라자다</p></div></div>
-        <div class="mps"><div class="mps-ic">🇮🇩</div><div><h4>인도네시아 K-푸드</h4><p>자카르타 대형 유통 마트 납품 채널</p></div></div>
-      </div>
-    </div>
-    <div class="mpanel" id="pm-cn">
-      <div class="mpi">
-        <h3>중국·홍콩 · <em>B2B 채널 전략</em></h3>
-        <p>B2C보다 B2B 유통 채널 구축에 집중합니다. 홍콩을 관문으로 중국 본토 진출 및 크로스보더 이커머스를 지원합니다.</p>
-        <div class="mp-stats">
-          <div class="mp-s"><div class="mp-sv">14억</div><div class="mp-sk">중국 인구</div></div>
-          <div class="mp-s"><div class="mp-sv">HK</div><div class="mp-sk">진입 관문</div></div>
-          <div class="mp-s"><div class="mp-sv">CBEC</div><div class="mp-sk">크로스보더 이커머스</div></div>
-          <div class="mp-s"><div class="mp-sv">ZH</div><div class="mp-sk">중국어 직발송</div></div>
-        </div>
-      </div>
-      <div class="mp-strats">
-        <div class="mps"><div class="mps-ic">🏪</div><div><h4>홍콩 유통 채널</h4><p>웰컴·파크앤샵 등 현지 대형 유통 거래선</p></div></div>
-        <div class="mps"><div class="mps-ic">📦</div><div><h4>티몰·징동 입점</h4><p>크로스보더 이커머스 채널 개설 대행</p></div></div>
-        <div class="mps"><div class="mps-ic">🤝</div><div><h4>B2B 총판 계약</h4><p>상하이·베이징 현지 총판사 발굴 및 계약</p></div></div>
+      <div class="kpi-cell">
+        <span class="kpi-icon">🌐</span>
+        <span class="kpi-num">2.5억</span>
+        <div class="kpi-title">글로벌 DB</div>
+        <div class="kpi-desc">검증된 바이어</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- IMAGE BAND: 유럽 -->
-<div class="ib">
-  <img src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=1600&q=75" alt="파리">
-  <div class="ibo ib-r">
-    <div class="ibt" style="text-align:right;">
-      <div class="ib-tag">🇪🇺 EUROPE MARKET</div>
-      <h2>유럽 시장,<br><span>K-브랜드 수요가 열리고 있습니다</span></h2>
-      <p>한-EU FTA 무관세 혜택과 K-뷰티·K-푸드 열풍으로<br>유럽 바이어들이 한국 파트너를 찾고 있습니다.</p>
-      <a href="#markets" onclick="goMarket('eu',1)" class="btn-gold" style="font-size:14px;padding:12px 28px;">유럽 시장 전략 보기</a>
+<!-- ══ PAIN — 비즈니스 스트레스 이미지 ══ -->
+<section class="pain-sec">
+  <div class="pain-hero">
+    <!-- 이미지: 고민하는 비즈니스맨, 사무실 야경 -->
+    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=900&q=80"
+      alt="수출 담당자 현실" loading="lazy">
+    <div class="pain-hero-overlay"></div>
+    <div class="pain-hero-text">
+      <div class="label">💬 현실 직시</div>
+      <h2>수출 담당자들의 현실,<br>익숙하지 않으신가요?</h2>
     </div>
   </div>
+  <div class="pain-body inner">
+    <div class="quote-wrap">
+      <div class="quote-card reveal">
+        <p>"DB 받아서 이메일 500통 보냈는데 답장은 겨우 5통... 그나마도 관심 없다는 답변뿐이에요."</p>
+        <div class="src">- 화장품 제조사 수출 담당 김○○</div>
+      </div>
+      <div class="quote-card reveal">
+        <p>"바이어 리스트 구매해서 이메일 1,000통 발송했는데 대부분 스팸으로 걸리고, 오픈율이 3%도 안 나와요."</p>
+        <div class="src">- 식품 가공 업체 대표 이○○</div>
+      </div>
+      <div class="quote-card reveal">
+        <p>"검색으로 찾은 해외 업체에 연락했더니 우리 제품 카테고리랑 안 맞거나, 이미 다른 공급업체랑 계약 중이더라고요..."</p>
+        <div class="src">- 전자제품 제조사 팀장 박○○</div>
+      </div>
+    </div>
+    <div class="pain-cause reveal">
+      <h3>이 모든 문제의 원인은?<br>검증 안 된 DB + 무작위 발송의 한계입니다</h3>
+      <div class="cause-item"><span class="x">❌</span><span>기존 DB → 오래된 정보 → 응답률 1~2%</span></div>
+      <div class="cause-item"><span class="x">❌</span><span>무작위 콜드 이메일 → 스팸 처리 → 오픈율 5% 미만</span></div>
+      <div class="cause-item"><span class="x">❌</span><span>수작업 리서치 → 검증 안 됨 → 시간·비용 낭비</span></div>
+    </div>
+    <a href="#apply" class="pain-cta-btn reveal">AI 기반 타겟팅 서비스로 모든 비효율을 해결해드립니다 →</a>
+  </div>
+</section>
+
+<!-- ══ COMPARE — 컨테이너 항구 이미지 ══ -->
+<section class="compare-sec" id="how">
+  <div class="compare-img-band">
+    <!-- 이미지: 글로벌 컨테이너 항구 -->
+    <img src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=900&q=80"
+      alt="글로벌 무역항" loading="lazy">
+  </div>
+  <div class="compare-body inner">
+    <div class="reveal">
+      <span class="sec-label">📊 성과 비교</span>
+      <div class="accent-line"></div>
+      <h2 class="sec-h2" style="color:#fff;">우리는 다릅니다</h2>
+      <p class="sec-p">일반 바이어 DB vs AI 타겟팅 — 숫자가 말해줍니다</p>
+    </div>
+    <table class="compare-table reveal">
+      <thead>
+        <tr>
+          <th>비교 항목</th>
+          <th>일반 DB 이메일</th>
+          <th class="hl">AI 바이어 매칭</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>이메일 오픈율</td><td class="bad">3~5%</td><td class="good">50%</td></tr>
+        <tr><td>응답률</td><td class="bad">1~2%</td><td class="good">15~20%</td></tr>
+        <tr><td>바이어 검증</td><td class="bad">검증 안 됨</td><td class="ok">수입 이력 검증 완료</td></tr>
+        <tr><td>스팸 처리율</td><td class="bad">빈번</td><td class="ok">맞춤형 메시지로 신뢰도↑</td></tr>
+        <tr><td>서비스 구성</td><td class="bad">DB 구매비 별도</td><td class="ok">DB+발송+관리 일체형</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ══ HOW 50% — AI 이미지 ══ -->
+<section class="how-sec">
+  <div class="inner">
+    <div class="reveal">
+      <span class="sec-label">🎯 50% 오픈율의 비결</span>
+      <div class="accent-line"></div>
+      <h2 class="sec-h2">AI가 스마트하게<br><em>일하니까요</em></h2>
+      <p class="sec-p">기술 기반의 타겟팅·검증·메시징 자동화가 만들어낸 결과입니다.</p>
+    </div>
+    <!-- 이미지: 서버룸/데이터센터 -->
+    <div class="how-img-wrap reveal-scale">
+      <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=900&q=80"
+        alt="AI 기술" loading="lazy">
+      <div class="how-img-badge">2.5억 바이어 DB · AI 실시간 분석</div>
+    </div>
+    <div class="how-cards">
+      <div class="how-card reveal">
+        <div class="how-num">1</div>
+        <div class="how-body">
+          <h3>스마트 필터링</h3>
+          <p>2.5억 DB 중 <strong>실제 거래 이력</strong> 있는 바이어만 선별. 관련 없는 업체 99% 제거.</p>
+        </div>
+      </div>
+      <div class="how-card reveal">
+        <div class="how-num">2</div>
+        <div class="how-body">
+          <h3>구매력 검증</h3>
+          <p>최근 수입 실적·거래 규모·활동 이력 분석으로 실제 구매 가능성 <strong>80% 이상</strong>인 바이어만 추천.</p>
+        </div>
+      </div>
+      <div class="how-card reveal">
+        <div class="how-num">3</div>
+        <div class="how-body">
+          <h3>맞춤형 메시지</h3>
+          <p>AI가 1:1 메시지 자동 작성 → 일반 템플릿 대비 <strong>오픈율 10배↑</strong></p>
+        </div>
+      </div>
+    </div>
+    <a href="#apply" class="how-cta reveal">내 상품에 맞는 바이어 리스트 확인하기</a>
+  </div>
+</section>
+
+<!-- ══ STEPS — 비즈니스 악수 이미지 ══ -->
+<section class="step-sec">
+  <div class="step-banner">
+    <!-- 이미지: 글로벌 비즈니스 악수 -->
+    <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=900&q=80"
+      alt="비즈니스 미팅" loading="lazy">
+    <div class="step-banner-text">
+      <div class="label">📋 진행 프로세스</div>
+      <h2>계약 후<br>이렇게 진행됩니다</h2>
+    </div>
+  </div>
+  <div class="step-body-wrap">
+    <div class="inner">
+      <div class="step-grid">
+        <div class="step-item reveal">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <div class="period">계약 후 3일 이내</div>
+            <h3>제품 & 타겟 분석</h3>
+            <ul>
+              <li>귀사 제품 카탈로그 및 경쟁사 분석</li>
+              <li>타겟 국가/지역 선정 (북미/유럽/아시아)</li>
+              <li>바이어 우선순위 기준 설정</li>
+            </ul>
+          </div>
+        </div>
+        <div class="step-item reveal">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <div class="period">1주차</div>
+            <h3>AI 매칭 & 1차 검증</h3>
+            <ul>
+              <li>2.5억 DB에서 매칭률 90% 이상 선별</li>
+              <li>수입 이력, 거래 규모, 신용도 검증</li>
+              <li>최종 리스트 50~100곳 도출</li>
+            </ul>
+          </div>
+        </div>
+        <div class="step-item reveal">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <div class="period">2주차</div>
+            <h3>맞춤형 이메일 발송</h3>
+            <ul>
+              <li>바이어별 1:1 메시지 작성 (AI 기반)</li>
+              <li>영문 카탈로그 첨부</li>
+              <li>관심 표명 바이어 실시간 리포트</li>
+            </ul>
+          </div>
+        </div>
+        <div class="step-item reveal">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <div class="period">3~4주차</div>
+            <h3>미팅 주선 & 후속 관리</h3>
+            <ul>
+              <li>화상 미팅 일정 조율</li>
+              <li>통역 지원 (영어/중국어/일본어)</li>
+              <li>견적서 작성 및 협상 지원</li>
+            </ul>
+          </div>
+        </div>
+        <div class="step-item reveal">
+          <div class="step-num">5</div>
+          <div class="step-content">
+            <div class="period">진행형</div>
+            <h3>계약 체결 & 사후 관리</h3>
+            <ul>
+              <li>계약서 검토 및 법률 자문</li>
+              <li>수출 서류 작성 대행</li>
+              <li>대금 결제 추적</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ TESTIMONIALS — 성공 팀 이미지 ══ -->
+<section class="testi-sec">
+  <div class="testi-banner">
+    <!-- 이미지: 성공한 비즈니스팀 -->
+    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=900&q=80"
+      alt="고객 성공 사례" loading="lazy">
+    <div class="testi-banner-text">
+      <div class="label">📣 실제 고객 후기</div>
+      <h2>직접 경험한<br>고객들의 이야기</h2>
+    </div>
+  </div>
+  <div class="testi-body inner">
+    <div class="testi-cards">
+      <div class="testi-card reveal">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">
+          "6개월간 해외출장 3번 다녀와서 쓴 돈만 8천만원인데, 성과는 거의 없었어요.
+          이 서비스는 3개월 만에 미국 바이어 12곳 발굴해줬고, 그 중 4곳과 실제 계약했습니다.
+          <strong>비용은 1/5인데 결과는 10배 좋네요.</strong>"
+        </p>
+        <div class="testi-name">— 〇〇코스메틱 대표 김〇〇</div>
+      </div>
+      <div class="testi-card reveal">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">
+          "일본 시장 진출하려고 기존 DB로 한 달 동안 이메일 500통 보냈는데 답장이 5통...
+          AI 매칭으로는 2주 만에 관심 있는 바이어 20곳 확보했어요.
+          <strong>오픈율이 정말 다르더라고요.</strong>"
+        </p>
+        <div class="testi-name">— 〇〇푸드 수출팀장 이〇〇</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ APPLY FORM ══ -->
+<section class="apply-sec" id="apply">
+  <div class="inner">
+    <div class="reveal" style="text-align:center;margin-bottom:22px;">
+      <span class="sec-label" style="display:block;text-align:center;">📋 신청서</span>
+      <div class="accent-line" style="margin:0 auto 12px;"></div>
+      <h2 class="sec-h2" style="text-align:center;">해외 바이어 AI 매칭 서비스<br>지금 시작하세요</h2>
+    </div>
+    <div class="form-box reveal-scale">
+      <div class="form-header">
+        <div class="form-header-bg"></div>
+        <div class="form-header-content">
+          <h3>🌐 해외 바이어 매칭 신청서</h3>
+          <p>작성 후 24시간 이내 전문 컨설턴트가 연락드립니다</p>
+        </div>
+      </div>
+      <div class="progress-wrap">
+        <div class="progress-label"><span>작성 진행률</span><span id="progressPct">0%</span></div>
+        <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+      </div>
+      <div class="form-body-inner" id="formBody">
+        <form onsubmit="handleSubmit(event)">
+          <div class="fg"><label>회사명 *</label><input type="text" id="f_company" placeholder="회사명을 입력해주세요" required></div>
+          <div class="fg"><label>대표자명 *</label><input type="text" id="f_ceo" placeholder="대표자명을 입력해주세요" required></div>
+          <div class="fg"><label>핸드폰번호 *</label><input type="tel" id="f_phone" placeholder="010-0000-0000" required></div>
+          <div class="fg"><label>주소지</label><input type="text" id="f_address" placeholder="서울시 강남구"></div>
+          <div class="fg">
+            <label>업종 *</label>
+            <select id="f_industry" required>
+              <option value="" disabled selected>-- 업종 선택 --</option>
+              <option>화장품 / 뷰티</option><option>식품 / 음료</option>
+              <option>의류 / 패션</option><option>전자 / IT</option>
+              <option>기계 / 제조</option><option>의료 / 헬스케어</option>
+              <option>소프트웨어</option><option>기타</option>
+            </select>
+          </div>
+          <div class="fg">
+            <label>수출 희망 지역 <span style="color:#aaa;font-weight:400">(최대 3개 선택)</span></label>
+            <div class="region-grid" id="regionGrid">
+              <div class="region-item" data-value="북미 (미국/캐나다)"><span>🇺🇸 북미</span></div>
+              <div class="region-item" data-value="유럽"><span>🇪🇺 유럽</span></div>
+              <div class="region-item" data-value="일본"><span>🇯🇵 일본</span></div>
+              <div class="region-item" data-value="동남아시아"><span>🌏 동남아</span></div>
+              <div class="region-item" data-value="중국"><span>🇨🇳 중국</span></div>
+              <div class="region-item" data-value="중동"><span>🌙 중동</span></div>
+            </div>
+            <div class="region-hint" id="regionHint">선택한 지역: <strong id="regionSelected">없음</strong></div>
+          </div>
+          <div class="agree-box">회사명(이하 '회사'라 한다)는 개인정보 보호법 제30조에 따라 정보 주체의 개인정보를 보호하고 이와 관련한 고충을 신속하고 원활하게 처리할 수 있도록 하기 위하여 다음과 같이 개인정보 처리지침을 수립, 공개합니다.</div>
+          <label class="agree-label"><input type="checkbox" required>개인정보 수집 및 이용에 동의합니다.</label>
+          <button type="submit" class="form-submit" id="submitBtn"><div class="spinner"></div><span id="btnTxt">신청하기</span></button>
+        </form>
+        <div class="form-success" id="successMsg">
+          <div class="icon">✅</div>
+          <h3>정상적으로 접수되었습니다</h3>
+          <p>담당 컨설턴트가 <strong>24시간 이내</strong> 연락드리겠습니다.<br><br>
+          문의: <a href="mailto:kfpexport@kfpexport.com" style="color:var(--orange)">kfpexport@kfpexport.com</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ STATS BAR ══ -->
+<div class="stats-bar">
+  <div class="stat-cell"><span class="stat-num">2억 5천만</span><div class="stat-label">고객 DB</div></div>
+  <div class="stat-cell"><span class="stat-num">10,000</span><div class="stat-label">월 컨택 업체</div></div>
+  <div class="stat-cell"><span class="stat-num">20%</span><div class="stat-label">오픈율</div></div>
 </div>
-<!-- SERVICES -->
-<section class="sec svc-sec" id="services">
-  <div class="sw">
-    <div class="sey fu">Our Services</div>
-    <h2 class="sh2 fu d1">세 가지 서비스,<br>하나의 목표 — 해외 매출</h2>
-    <p class="slead fu d2">바이어 발굴부터 전략 수립, 법인 설립까지. 단계별로 필요한 것만 선택하거나 전부를 한 번에 해결하세요.</p>
-    <div class="svc-grid">
-      <div class="svc-card fu d1">
-        <div class="svc-top s1t"></div>
-        <div class="svc-num">01</div>
-        <div class="svc-ic">🎯</div>
-        <div class="svc-title">해외 바이어 발굴</div>
-        <p class="svc-desc">2.5억 검증 DB에서 귀사 제품·업종에 맞는 바이어를 AI로 선별하고, 1:1 맞춤 이메일로 60일 내 첫 미팅을 목표로 진행합니다.</p>
-        <ul class="svc-feats">
-          <li>업종·제품별 AI 바이어 매칭 (50~100곳)</li>
-          <li>5개 시장어 1:1 맞춤 이메일 발송</li>
-          <li>실시간 오픈율·응답률 리포트</li>
-          <li>화상미팅 주선 + 통역 지원</li>
-          <li>협상 가이드 + 견적서 작성 대행</li>
-        </ul>
-        <span class="svc-badge sb1">CORE SERVICE</span>
-      </div>
-      <div class="svc-card fu d2">
-        <div class="svc-top s2t"></div>
-        <div class="svc-num">02</div>
-        <div class="svc-ic">📊</div>
-        <div class="svc-title">수출전략 제안서</div>
-        <p class="svc-desc">PEST 분석 · SWOT · STP 포지셔닝을 포함한 맞춤형 수출전략 제안서. 12개월 실행 로드맵까지 완성 제공합니다.</p>
-        <ul class="svc-feats">
-          <li>타겟 시장 PEST 거시환경 분석</li>
-          <li>경쟁사 SWOT 포지셔닝 분석</li>
-          <li>STP 마케팅 전략 수립</li>
-          <li>12개월 단계별 실행 로드맵</li>
-          <li>PDF + PPT 완성본 제공</li>
-        </ul>
-        <span class="svc-badge sb2">STRATEGY</span>
-      </div>
-      <div class="svc-card fu d3">
-        <div class="svc-top s3t"></div>
-        <div class="svc-num">03</div>
-        <div class="svc-ic">🏛️</div>
-        <div class="svc-title">미국 법인 설립</div>
-        <p class="svc-desc">텍사스를 거점으로 미국 현지법인을 원스톱으로 설립합니다. K-MidSouth Nexus, 한-텍사스경제포럼과의 네트워크 활용.</p>
-        <ul class="svc-feats">
-          <li>텍사스 LLC / C-Corp 설립 대행</li>
-          <li>EIN · 은행계좌 개설 지원</li>
-          <li>현지 법률·세무 자문 연결</li>
-          <li>TMEM 포럼 산업시찰 연계</li>
-          <li>달라스·오스틴·휴스턴 네트워크</li>
-        </ul>
-        <span class="svc-badge sb3">USA INCORPORATION</span>
-      </div>
+<a href="#apply" class="stats-cta-btn">무료 상담 받기</a>
+
+<!-- ══ PRODUCT — 서비스 이미지 ══ -->
+<section class="product-sec">
+  <div class="inner">
+    <div class="reveal" style="text-align:center;">
+      <span class="sec-label" style="display:block;text-align:center;">Company Overview</span>
+      <div class="accent-line" style="margin:0 auto 12px;"></div>
+      <h2 class="sec-h2" style="text-align:center;">이제 대표님은<br>제품에만 신경쓰세요</h2>
+      <p class="sec-p">빅데이터 인공지능이 찾아주는 해외 바이어 서비스</p>
     </div>
+    <div class="product-img-frame reveal-scale">
+      <!-- 원본 이미지 우선, fallback으로 Unsplash -->
+      <img src="https://cdn.imweb.me/thumbnail/20250803/255ed7f3857d0.png" alt="KFP 서비스"
+        onerror="this.src='https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=700&q=80'">
+      <div class="product-img-label">AI 기반 바이어 발굴 플랫폼</div>
+    </div>
+    <a href="#apply" class="product-cta reveal">무료 상담 받기</a>
   </div>
 </section>
 
-
-<!-- IMAGE BAND: 동남아 -->
-<div class="ib">
-  <img src="https://images.unsplash.com/photo-1525625293386-3f8f99389edd?w=1600&q=75" alt="싱가포르">
-  <div class="ibo ib-l">
-    <div class="ibt">
-      <div class="ib-tag">🌏 SOUTHEAST ASIA</div>
-      <h2>동남아 시장,<br><span>지금이 황금 타이밍</span></h2>
-      <p>베트남·태국·인도네시아·말레이시아<br>한류의 힘으로 문이 가장 넓게 열린 시장.</p>
-      <a href="#markets" onclick="goMarket('sea',2)" class="btn-gold" style="font-size:14px;padding:12px 28px;">동남아 시장 전략 보기</a>
-    </div>
+<!-- ══ VISION — 글로벌 빌딩 이미지 ══ -->
+<section class="vision-sec">
+  <div class="vision-img-band">
+    <!-- 이미지: 글로벌 비즈니스 빌딩 -->
+    <img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=900&q=80"
+      alt="글로벌 파트너십" loading="lazy">
   </div>
-</div>
-<!-- TEXAS -->
-<section class="sec tx-sec" id="texas">
-  <div class="sw">
-    <div class="tx-grid">
-      <div class="tx-info">
-        <div class="tx-dead">🔴 신청 마감 D-20 · 2026. 03. 30</div>
-        <h2>미국 텍사스<br><em>법인 설립</em>,<br>포럼에서 시작하세요</h2>
-        <p>2026년 6월 달라스→오스틴→테일러→휴스턴 산업시찰. K-MidSouth Nexus, 한-텍사스경제포럼과 함께하는 현지 네트워킹으로 진짜 미국 비즈니스를 시작합니다.</p>
-        <div class="tx-cities">
-          <div class="city-card"><div class="cf">🏙️</div><div class="cn">Dallas</div><div class="cs">비즈니스 허브</div></div>
-          <div class="city-card"><div class="cf">💡</div><div class="cn">Austin</div><div class="cs">테크 스타트업 메카</div></div>
-          <div class="city-card"><div class="cf">🏭</div><div class="cn">Taylor</div><div class="cs">삼성 반도체 단지</div></div>
-          <div class="city-card"><div class="cf">⚓</div><div class="cn">Houston</div><div class="cs">에너지·물류 거점</div></div>
-        </div>
-        <div class="tmem-box">
-          <h4>🤝 K-MidSouth Nexus × 한-텍사스경제포럼</h4>
-          <p>2026년 6월 8~14일 · 참가비 450~550만원 · 현지 법인 설립 상담 포함<br>한국 중소기업 미국 진출의 핵심 관문 네트워크</p>
-        </div>
-      </div>
-      <div class="tx-steps">
-        <div class="tx-step"><div class="tx-sn">1</div><div><h4>상담 & 설립 유형 결정</h4><p>LLC vs C-Corp, 텍사스 vs 델라웨어 — 사업 목적에 맞는 유형 선택</p></div></div>
-        <div class="tx-step"><div class="tx-sn">2</div><div><h4>법인 등록 서류 준비</h4><p>Articles of Organization, Registered Agent 지정, EIN 신청</p></div></div>
-        <div class="tx-step"><div class="tx-sn">3</div><div><h4>은행계좌 + 주소 개설</h4><p>텍사스 현지 비즈니스 주소 확보, 기업 은행 계좌 개설 지원</p></div></div>
-        <div class="tx-step"><div class="tx-sn">4</div><div><h4>현지 파트너 네트워킹</h4><p>TMEM 포럼 통해 텍사스 현지 기업·투자자·파트너 직접 연결</p></div></div>
-        <div class="tx-step"><div class="tx-sn">5</div><div><h4>법률·세무 자문 연결</h4><p>현지 공인 법무법인·CPA 사무소와 장기 자문 계약</p></div></div>
-      </div>
+  <div class="vision-body inner">
+    <div class="reveal">
+      <span class="sec-label">Our Vision</span>
+      <div class="accent-line"></div>
+      <h2 class="sec-h2" style="color:#fff;">바이어 매칭을 넘어<br>해외시장 개척 파트너로</h2>
+      <p class="sec-p" style="margin-bottom:16px;">
+        법인 설립부터 세금 신고까지<br>우리는 해외 진출의 파트너입니다.
+      </p>
     </div>
+    <div class="reveal">
+      <div class="v-item"><span class="ck">✔</span><strong style="color:#fff;">미국 법인 직접 설립 지원</strong></div>
+      <div class="v-item"><span class="ck">✔</span><strong style="color:#fff;">현지 세금 신고 · 회계 서비스 연계</strong></div>
+      <div class="v-item"><span class="ck">✔</span><strong style="color:#fff;">해외 지사 실무 설립 컨설팅</strong></div>
+      <p style="font-size:12px;color:rgba(255,255,255,.35);margin-top:8px;">미국 CPA 연계 1:1 진행 사례 다수 보유</p>
+    </div>
+    <a href="#apply" class="vision-cta reveal">무료 상담 받기</a>
   </div>
 </section>
 
-<!-- IMAGE BAND: 일본 -->
-<div class="ib">
-  <img src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=1600&q=75" alt="도쿄">
-  <div class="ibo ib-r">
-    <div class="ibt" style="text-align:right;">
-      <div class="ib-tag">🇯🇵 JAPAN MARKET</div>
-      <h2>일본 시장,<br><span>B2B 파트너십의 기회</span></h2>
-      <p>일본어 맞춤 이메일과 검증된 네트워크로<br>일본 시장 진입을 함께 준비합니다.</p>
-      <a href="#markets" onclick="goMarket('jp',3)" class="btn-gold" style="font-size:14px;padding:12px 28px;">일본 시장 전략 보기</a>
+<!-- ══ PARTNERS ══ -->
+<section class="partner-sec">
+  <div class="inner">
+    <div class="reveal" style="text-align:center;">
+      <span class="sec-label" style="display:block;text-align:center;">Our Partners</span>
+      <div class="accent-line" style="margin:0 auto 12px;"></div>
+      <h2 class="sec-h2" style="text-align:center;">한국재무설계는 20년간<br>수많은 기업과 신뢰를 구축합니다</h2>
     </div>
-  </div>
-</div>
-<!-- PROPOSAL -->
-<section class="sec prop-sec" id="proposal">
-  <div class="sw">
-    <div class="prop-grid">
-      <div class="prop-card">
-        <div class="ph"><h4>📄 수출전략 제안서 예시</h4><span class="pt">SAMPLE</span></div>
-        <div class="pb">
-          <div class="pr"><div class="pn">1</div><div class="ptt">Executive Summary — 핵심 기회 & 추천 진출 전략</div></div>
-          <div class="pr"><div class="pn">2</div><div class="ptt">PEST 분석 — 정치·경제·사회·기술 환경 분석</div></div>
-          <div class="pr"><div class="pn">3</div><div class="ptt">경쟁사 SWOT — 현지 경쟁 포지셔닝 지도</div></div>
-          <div class="pr"><div class="pn">4</div><div class="ptt">STP 전략 — 세분화·타겟팅·포지셔닝</div></div>
-          <div class="pr"><div class="pn">5</div><div class="ptt">가격·유통·채널 전략</div></div>
-          <div class="pr"><div class="pn">6</div><div class="ptt">12개월 단계별 실행 로드맵</div></div>
-          <div class="pr"><div class="pn">7</div><div class="ptt">예상 ROI · 투자비용 시뮬레이션</div></div>
-        </div>
-      </div>
-      <div class="prop-info">
-        <div class="sey">Export Strategy</div>
-        <h2>전략 없는 수출은<br><em>도박</em>입니다</h2>
-        <p>KFP Export의 수출전략 제안서는 단순한 시장 조사 보고서가 아닙니다. 귀사 제품·업종·규모에 최적화된 실행 가능한 로드맵을 제공합니다.</p>
-        <div class="pf-list">
-          <div class="pf"><div class="pf-ic">🔬</div><p><strong>데이터 기반 시장 분석</strong> — KOTRA, KITA, ITC Trade Map 공식 데이터 활용</p></div>
-          <div class="pf"><div class="pf-ic">🎯</div><p><strong>업종별 맞춤 포지셔닝</strong> — 제조·IT·뷰티·식품 4개 업종 전문 분석가 배치</p></div>
-          <div class="pf"><div class="pf-ic">📅</div><p><strong>12개월 실행 로드맵</strong> — 월별 마일스톤 + KPI 측정 기준 포함</p></div>
-          <div class="pf"><div class="pf-ic">📑</div><p><strong>PDF + PPT 완성본</strong> — 투자자·파트너 프레젠테이션용 즉시 사용 가능</p></div>
-        </div>
-      </div>
+    <div class="partner-grid reveal">
+      <img src="https://cdn.imweb.me/thumbnail/20250803/029cba1e7f351.png" alt="" onerror="this.style.display='none'">
+      <img src="https://cdn.imweb.me/thumbnail/20250803/ac1a22758a90e.png" alt="" onerror="this.style.display='none'">
+      <img src="https://cdn.imweb.me/thumbnail/20250803/e14923fc8eb13.png" alt="" onerror="this.style.display='none'">
+      <img src="https://cdn.imweb.me/thumbnail/20250803/859f4d6476a10.png" alt="" onerror="this.style.display='none'">
+      <img src="https://cdn.imweb.me/thumbnail/20250803/2eac3e67e5f0e.png" alt="" onerror="this.style.display='none'">
+      <img src="https://cdn.imweb.me/thumbnail/20250803/9a192628cace0.png" alt="" onerror="this.style.display='none'">
+      <img src="https://cdn.imweb.me/thumbnail/20250803/3b6c8e9bed1b5.png" alt="" onerror="this.style.display='none'">
+      <img src="https://cdn.imweb.me/thumbnail/20250803/0cf75968b71c0.png" alt="" onerror="this.style.display='none'">
+      <img src="https://cdn.imweb.me/thumbnail/20250803/b3ada349f7b43.png" alt="" onerror="this.style.display='none'">
+      <img src="https://cdn.imweb.me/thumbnail/20250803/d86bd46132646.png" alt="" onerror="this.style.display='none'">
+      <img src="https://cdn.imweb.me/thumbnail/20250803/6bc543f0a527a.png" alt="" onerror="this.style.display='none'">
+      <img src="https://cdn.imweb.me/thumbnail/20250803/2aa42fc46d682.png" alt="" onerror="this.style.display='none'">
     </div>
+    <a href="#apply" class="partner-cta reveal">무료 상담 받기</a>
   </div>
 </section>
 
-
-<!-- IMAGE BAND: 중국·홍콩 -->
-<div class="ib">
-  <img src="https://images.unsplash.com/photo-1536599018102-9f803c140fc1?w=1600&q=75" alt="홍콩">
-  <div class="ibo ib-l">
-    <div class="ibt">
-      <div class="ib-tag">🇨🇳 CHINA · HONG KONG</div>
-      <h2>중국·홍콩 시장,<br><span>B2B 채널로 먼저 진입합니다</span></h2>
-      <p>홍콩을 관문으로 중국 본토 유통 채널 구축.<br>크로스보더 이커머스·총판 계약을 함께 준비합니다.</p>
-      <a href="#markets" onclick="goMarket('cn',4)" class="btn-gold" style="font-size:14px;padding:12px 28px;">중국·홍콩 전략 보기</a>
-    </div>
-  </div>
-</div>
-<!-- COMPARE -->
-<section class="sec cmp-sec" id="compare">
-  <div class="sw">
-    <div class="sey fu">Why KFP Export</div>
-    <h2 class="sh2 fu d1">다른 에이전시와<br>비교해보세요</h2>
-    <div class="tbl-wrap fu d2">
-      <table class="cmp-tbl">
-        <thead><tr><th>비교 항목</th><th>❌ 일반 DB / 에이전시</th><th>✅ KFP Export</th></tr></thead>
-        <tbody>
-          <tr><td>이메일 오픈율</td><td>3~5%</td><td><strong class="ck">20%+</strong></td></tr>
-          <tr><td>바이어 응답률</td><td>1~2%</td><td><strong class="ck">5~15%</strong></td></tr>
-          <tr><td>수출 전략 제공</td><td class="xk">없음 (DB만 판매)</td><td>PEST·SWOT·STP 맞춤 제안서</td></tr>
-          <tr><td>타겟 시장 수</td><td>1개국 단위</td><td><strong class="ck">5개 시장 동시 공략</strong></td></tr>
-          <tr><td>미국 법인 설립</td><td class="xk">없음</td><td>텍사스 법인 원스톱 지원</td></tr>
-          <tr><td>서비스 구성</td><td>DB 구매비 별도</td><td><strong class="ck">발굴·전략·법인설립 일체형</strong></td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</section>
-
-<!-- PROCESS -->
-<section class="sec proc-sec" id="process">
-  <div class="sw">
-    <div class="sey fu">How It Works</div>
-    <h2 class="sh2 fu d1">체계적인 5단계,<br>60일 안에 바이어를 만납니다</h2>
-    <div class="proc-list">
-      <div class="proc-item fu d1"><div class="pn2">1</div><div><span class="pt2">신청 후 3일 이내</span><h3>STEP 1 · 제품 & 타겟 시장 분석</h3><p>귀사 제품·업종을 분석하고 5개 시장 중 우선 공략할 시장을 선정합니다. 필요 시 맞춤 수출전략 제안서를 제공합니다.</p><div class="ptags"><span class="ptag">제품 분석</span><span class="ptag">시장 선정</span><span class="ptag">전략 수립</span></div></div></div>
-      <div class="proc-item fu d2"><div class="pn2">2</div><div><span class="pt2">1주차</span><h3>STEP 2 · AI 매칭 & 바이어 검증</h3><p>2.5억 DB에서 업종·제품·시장 기준으로 매칭 바이어를 선별하고 실거래 이력과 신용도를 검증합니다. 최종 50~100곳 도출.</p><div class="ptags"><span class="ptag">AI 매칭</span><span class="ptag">신용 검증</span><span class="ptag">50~100곳</span></div></div></div>
-      <div class="proc-item fu d3"><div class="pn2">3</div><div><span class="pt2">2주차</span><h3>STEP 3 · 1:1 맞춤 이메일 발송</h3><p>바이어별 업종·제품에 맞는 1:1 메시지를 작성해 5개 시장 언어로 직접 발송합니다. 실시간 오픈율 확인 가능.</p><div class="ptags"><span class="ptag">1:1 맞춤 메시지</span><span class="ptag">5개 시장어</span><span class="ptag">실시간 리포트</span></div></div></div>
-      <div class="proc-item fu d4"><div class="pn2">4</div><div><span class="pt2">3~4주차</span><h3>STEP 4 · 미팅 주선 & 후속 관리</h3><p>화상 미팅 일정을 조율하고 통역(영어·일본어·중국어·베트남어)을 지원합니다. 협상 지원 및 견적서 작성 포함.</p><div class="ptags"><span class="ptag">화상미팅 주선</span><span class="ptag">통역 지원</span><span class="ptag">협상 지원</span></div></div></div>
-      <div class="proc-item fu d5"><div class="pn2">5</div><div><span class="pt2">진행형</span><h3>STEP 5 · 계약 & 법인 설립 (선택)</h3><p>계약서 검토·법률 자문·수출 서류 대행, 원하시면 미국 현지법인 설립까지 처음부터 끝을 함께합니다.</p><div class="ptags"><span class="ptag">계약 검토</span><span class="ptag">서류 대행</span><span class="ptag">법인 설립</span></div></div></div>
-    </div>
-  </div>
-</section>
-
-
-
-<!-- TESTIMONIALS -->
-<section class="sec tst-sec" id="reviews">
-  <div class="sw">
-    <div class="sey fu">Real Results</div>
-    <h2 class="sh2 fu d1">숫자가 아닌 현실,<br>실제 대표님들의 이야기</h2>
-    <div class="tst-grid">
-      <div class="tst-card fu d1"><div class="stars">★★★★★</div><p>"6개월간 해외출장 3번 다녀와서 쓴 돈만 8천만 원, 성과는 거의 없었어요. KFP Export는 3개월 만에 미국 바이어 12곳을 발굴해줬고 그 중 4곳과 실제 계약했습니다. <strong>비용은 1/5인데 결과는 10배 좋네요.</strong>"</p><div class="tst-auth">○○코스메틱 대표 김○○ · 미국 시장 진출</div></div>
-      <div class="tst-card fu d2"><div class="stars">★★★★★</div><p>"전략 제안서를 받고 나서야 우리 제품이 일본에서 어떻게 포지셔닝 되어야 하는지 처음으로 명확해졌어요. <strong>2주 동안 일본 바이어 18곳과 연락이 닿았고</strong> 지금 3곳과 계약 진행 중입니다."</p><div class="tst-auth">○○소프트웨어 대표 이○○ · 일본 시장 진출</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- PARTNERS -->
-<section class="sec ptn-sec">
-  <div class="sw">
-    <div class="ptn-lbl">Our Partners & Track Record</div>
-    <div class="ptn-row">
-      <div class="pti"><div class="ptn">SAMSUNG</div><div class="pts">삼성그룹</div></div>
-      <div class="pti"><div class="ptn">HYUNDAI</div><div class="pts">현대자동차</div></div>
-      <div class="pti"><div class="ptn">LG</div><div class="pts">LG디스플레이</div></div>
-      <div class="pti"><div class="ptn">KIA</div><div class="pts">기아</div></div>
-      <div class="pti"><div class="ptn">LOTTE</div><div class="pts">롯데상사</div></div>
-      <div class="pti"><div class="ptn">KOTRA</div><div class="pts">대한무역투자진흥공사</div></div>
-      <div class="pti"><div class="ptn">K-MidSouth</div><div class="pts">한-텍사스경제포럼</div></div>
-    </div>
-    <p class="ptn-note">한국재무설계(주)는 20년간 수많은 기업과 함께 신뢰를 구축하고 있습니다.</p>
-  </div>
-</section>
-
-<!-- CTA FINAL -->
-<section class="sec cta-sec">
-  <div class="sw">
-    <div class="cta-inner">
-      <div class="sey" style="text-align:center;">지금 시작하세요</div>
-      <h2>해외 수출, 혼자<br>고민하지 <span style="color:var(--c-gold)">마세요</span></h2>
-      <p>무료 상담 신청 → 24시간 내 담당자가 연락드립니다.<br>바이어 발굴부터 법인 설립까지, 처음부터 끝을 함께합니다.</p>
-      <div class="cta-btns">
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfZjaBgfQaWdaRvsUtdEwBb8Q_ciKfr8w8dc3I7qAXTF5mG6g/viewform" target="_blank" class="btn-gold" style="font-size:18px;padding:20px 56px;">🚀 무료 상담 신청하기</a>
-
-      </div>
-      <p class="cta-note">kfpexport@kfpexport.com &nbsp;|&nbsp; 서울 강남구 영동대로 96길 20, 7층</p>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
+<!-- ══ FOOTER ══ -->
 <footer>
-  <div class="fi">
-    <div class="fb2">
-      <div class="flogo">KFP<span style="color:rgba(244,240,232,.35)">export</span></div>
-      <p>한국재무설계(주)<br>서울 강남구 영동대로 96길 20, 7층<br>사업자등록번호: 120-86-89360<br><a href="mailto:kfpexport@kfpexport.com?subject=%5BKFP%20Export%5D%20%ED%95%B4%EC%99%B8%20%EB%B0%94%EC%9D%B4%EC%96%B4%20%EB%B0%9C%EA%B5%B4%20%EB%AC%B8%EC%9D%98&body=%EC%95%88%EB%85%95%ED%95%98%EC%84%B8%EC%9A%94%2C%20KFP%20Export%20%EB%AC%B8%EC%9D%98%EB%93%9C%EB%A6%BD%EB%8B%88%EB%8B%A4.%0A%0A%E2%96%A3%20%ED%9A%8C%EC%82%AC%EB%AA%85%20%3A%20%0A%E2%96%A3%20%EB%8B%B4%EB%8B%B9%EC%9E%90%20%3A%20%0A%E2%96%A3%20%EC%97%B0%EB%9D%BD%EC%B2%98%20%3A%20%0A%E2%96%A3%20%EC%A3%BC%EC%9A%94%20%EC%A0%9C%ED%92%88%2F%EC%97%85%EC%A2%85%20%3A%20%0A%E2%96%A3%20%EA%B4%80%EC%8B%AC%20%EC%8B%9C%EC%9E%A5%20%3A%20%0A%E2%96%A3%20%EB%AC%B8%EC%9D%98%20%EB%82%B4%EC%9A%A9%20%3A%20%0A%0A%EA%B0%90%EC%82%AC%ED%95%A9%EB%8B%88%EB%8B%A4." style="color:var(--c-gold);text-decoration:none;transition:opacity .2s;" onmouseover="this.style.opacity='.7'" onmouseout="this.style.opacity='1'">kfpexport@kfpexport.com</a></p>
-    </div>
-    <div class="flinks">
-      <a href="#markets">5개 타겟 시장</a>
-      <a href="#services">서비스 소개</a>
-      <a href="#texas">미국 법인 설립</a>
-      <a href="#proposal">수출전략 제안서</a>
-      <a href="#process">진행 과정</a>
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSfZjaBgfQaWdaRvsUtdEwBb8Q_ciKfr8w8dc3I7qAXTF5mG6g/viewform" target="_blank">무료 상담 신청</a>
-      <a href="mailto:kfpexport@kfpexport.com?subject=%5BKFP%20Export%5D%20%ED%95%B4%EC%99%B8%20%EB%B0%94%EC%9D%B4%EC%96%B4%20%EB%B0%9C%EA%B5%B4%20%EB%AC%B8%EC%9D%98&body=%EC%95%88%EB%85%95%ED%95%98%EC%84%B8%EC%9A%94%2C%20KFP%20Export%20%EB%AC%B8%EC%9D%98%EB%93%9C%EB%A6%BD%EB%8B%88%EB%8B%A4.%0A%0A%E2%96%A3%20%ED%9A%8C%EC%82%AC%EB%AA%85%20%3A%20%0A%E2%96%A3%20%EB%8B%B4%EB%8B%B9%EC%9E%90%20%3A%20%0A%E2%96%A3%20%EC%97%B0%EB%9D%BD%EC%B2%98%20%3A%20%0A%E2%96%A3%20%EC%A3%BC%EC%9A%94%20%EC%A0%9C%ED%92%88%2F%EC%97%85%EC%A2%85%20%3A%20%0A%E2%96%A3%20%EA%B4%80%EC%8B%AC%20%EC%8B%9C%EC%9E%A5%20%3A%20%0A%E2%96%A3%20%EB%AC%B8%EC%9D%98%20%EB%82%B4%EC%9A%A9%20%3A%20%0A%0A%EA%B0%90%EC%82%AC%ED%95%A9%EB%8B%88%EB%8B%A4." style="color:var(--c-gold);border-color:rgba(201,168,76,.3);">📧 이메일 문의</a>
-    </div>
+  <div class="footer-logo">
+    <img src="https://cdn.imweb.me/thumbnail/20251109/c24d626c107a2.png" alt="한국재무설계"
+      onerror="this.style.display='none'">
   </div>
-  <div class="fcopy">
-    © 2026 KFP Export · 한국재무설계(주). All Rights Reserved.
-    &nbsp;&nbsp;|&nbsp;&nbsp;
-    <a href="#" onclick="document.getElementById('privacyModal').style.display='flex';return false;" style="color:rgba(244,240,232,.4);text-decoration:underline;cursor:pointer;transition:color .2s;" onmouseover="this.style.color='#C9A84C'" onmouseout="this.style.color='rgba(244,240,232,.4)'">개인정보처리방침</a>
-    &nbsp;&nbsp;|&nbsp;&nbsp;
-    <a href="#" onclick="document.getElementById('termsModal').style.display='flex';return false;" style="color:rgba(244,240,232,.4);text-decoration:underline;cursor:pointer;transition:color .2s;" onmouseover="this.style.color='#C9A84C'" onmouseout="this.style.color='rgba(244,240,232,.4)'">이용약관</a>
+  <div class="footer-divider"></div>
+  <div class="footer-info">
+    <strong style="color:rgba(255,255,255,.5)">한국재무설계(주)</strong><br>
+    본사 서울시 강남구 테헤란로 98길 6-9, 7층<br>
+    서울본부 서울 강남구 영동대로 96길 20 대화 빌딩 7층<br>
+    사업자등록번호 120-86-89360<br>
+    <a href="mailto:kfpexport@kfpexport.com" style="color:var(--orange)">kfpexport@kfpexport.com</a>
   </div>
-
-<!-- ── 개인정보처리방침 모달 ── -->
-<div id="privacyModal" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.75);backdrop-filter:blur(8px);align-items:center;justify-content:center;padding:20px;" onclick="if(event.target===this)this.style.display='none'">
-  <div style="background:#0d1a2e;border:1px solid rgba(201,168,76,.2);border-radius:20px;max-width:720px;width:100%;max-height:85vh;overflow-y:auto;position:relative;">
-    <div style="position:sticky;top:0;background:#0d1a2e;border-bottom:1px solid rgba(255,255,255,.07);padding:22px 28px;display:flex;align-items:center;justify-content:space-between;border-radius:20px 20px 0 0;">
-      <h3 style="font-size:18px;font-weight:900;color:#fff;">개인정보처리방침</h3>
-      <button onclick="document.getElementById('privacyModal').style.display='none'" style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);color:#fff;width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;">✕</button>
-    </div>
-    <div style="padding:28px;font-size:14px;color:rgba(244,240,232,.6);line-height:1.9;">
-      <p style="font-size:12px;color:rgba(244,240,232,.35);margin-bottom:24px;">시행일: 2026년 1월 1일 &nbsp;|&nbsp; 한국재무설계(주) KFP Export</p>
-
-      <h4 style="color:#C9A84C;font-size:14px;font-weight:800;margin:20px 0 8px;">제1조 개인정보의 수집 항목 및 수집 방법</h4>
-      <p>KFP Export(이하 "회사")는 해외 바이어 발굴 서비스 제공을 위해 아래와 같은 개인정보를 수집합니다.</p>
-      <ul style="margin:10px 0 10px 16px;list-style:disc;">
-        <li>수집 항목: 회사명, 성명, 직책, 이메일 주소, 연락처, 업종, 제품 정보, 관심 수출 시장</li>
-        <li>수집 방법: 홈페이지 신청 폼, 이메일 문의, 상담 신청서</li>
-      </ul>
-
-      <h4 style="color:#C9A84C;font-size:14px;font-weight:800;margin:20px 0 8px;">제2조 개인정보의 수집·이용 목적</h4>
-      <ul style="margin:10px 0 10px 16px;list-style:disc;">
-        <li>해외 바이어 발굴 서비스 제공 및 상담 진행</li>
-        <li>수출전략 제안서 작성 및 컨설팅 서비스 이행</li>
-        <li>미국 법인 설립 지원 서비스 안내</li>
-        <li>서비스 관련 공지사항 및 마케팅 정보 발송 (사전 동의 시)</li>
-      </ul>
-
-      <h4 style="color:#C9A84C;font-size:14px;font-weight:800;margin:20px 0 8px;">제3조 개인정보의 보유 및 이용 기간</h4>
-      <p>서비스 계약 종료 또는 회원 탈퇴 후 <strong style="color:#fff;">3년간</strong> 보관 후 파기합니다. 단, 관련 법령에 따라 보존이 필요한 경우 해당 기간 동안 보관합니다.</p>
-      <ul style="margin:10px 0 10px 16px;list-style:disc;">
-        <li>계약·청약 철회 기록: 5년 (전자상거래법)</li>
-        <li>소비자 불만·분쟁 기록: 3년 (전자상거래법)</li>
-      </ul>
-
-      <h4 style="color:#C9A84C;font-size:14px;font-weight:800;margin:20px 0 8px;">제4조 개인정보의 제3자 제공</h4>
-      <p>회사는 원칙적으로 이용자의 개인정보를 외부에 제공하지 않습니다. 다만, 서비스 이행을 위해 바이어 매칭 파트너사에 최소한의 정보를 제공할 수 있으며, 이 경우 사전 동의를 구합니다.</p>
-
-      <h4 style="color:#C9A84C;font-size:14px;font-weight:800;margin:20px 0 8px;">제5조 개인정보의 파기 절차 및 방법</h4>
-      <ul style="margin:10px 0 10px 16px;list-style:disc;">
-        <li>전자적 파일: 복구 불가능한 방법으로 영구 삭제</li>
-        <li>서면 자료: 분쇄 또는 소각</li>
-      </ul>
-
-      <h4 style="color:#C9A84C;font-size:14px;font-weight:800;margin:20px 0 8px;">제6조 이용자의 권리·의무 및 행사 방법</h4>
-      <p>이용자는 언제든지 개인정보 열람, 정정, 삭제, 처리정지를 요청할 수 있습니다. 요청은 이메일(<a href="mailto:kfpexport@kfpexport.com" style="color:#C9A84C;">kfpexport@kfpexport.com</a>) 또는 서면으로 접수하며, 10영업일 이내에 처리합니다.</p>
-
-      <h4 style="color:#C9A84C;font-size:14px;font-weight:800;margin:20px 0 8px;">제7조 개인정보 보호책임자</h4>
-      <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:16px 18px;margin-top:8px;">
-        <p style="margin:0;">책임자: 신대식 본부장 &nbsp;|&nbsp; 이메일: <a href="mailto:kfpexport@kfpexport.com" style="color:#C9A84C;">kfpexport@kfpexport.com</a><br>
-        주소: 서울 강남구 영동대로 96길 20, 7층 &nbsp;|&nbsp; 한국재무설계(주)</p>
-      </div>
-
-      <p style="margin-top:24px;font-size:12px;color:rgba(244,240,232,.25);">본 방침은 2026년 1월 1일부터 시행되며, 변경 시 홈페이지를 통해 공지합니다.</p>
-    </div>
-  </div>
-</div>
-
-<!-- ── 이용약관 모달 ── -->
-<div id="termsModal" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.75);backdrop-filter:blur(8px);align-items:center;justify-content:center;padding:20px;" onclick="if(event.target===this)this.style.display='none'">
-  <div style="background:#0d1a2e;border:1px solid rgba(201,168,76,.2);border-radius:20px;max-width:720px;width:100%;max-height:85vh;overflow-y:auto;position:relative;">
-    <div style="position:sticky;top:0;background:#0d1a2e;border-bottom:1px solid rgba(255,255,255,.07);padding:22px 28px;display:flex;align-items:center;justify-content:space-between;border-radius:20px 20px 0 0;">
-      <h3 style="font-size:18px;font-weight:900;color:#fff;">이용약관</h3>
-      <button onclick="document.getElementById('termsModal').style.display='none'" style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);color:#fff;width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;">✕</button>
-    </div>
-    <div style="padding:28px;font-size:14px;color:rgba(244,240,232,.6);line-height:1.9;">
-      <p style="font-size:12px;color:rgba(244,240,232,.35);margin-bottom:24px;">시행일: 2026년 1월 1일 &nbsp;|&nbsp; 한국재무설계(주) KFP Export</p>
-
-      <h4 style="color:#C9A84C;font-size:14px;font-weight:800;margin:20px 0 8px;">제1조 목적</h4>
-      <p>본 약관은 한국재무설계(주)(이하 "회사")가 운영하는 KFP Export 서비스의 이용 조건 및 절차, 회사와 이용자 간의 권리·의무 관계를 규정함을 목적으로 합니다.</p>
-
-      <h4 style="color:#C9A84C;font-size:14px;font-weight:800;margin:20px 0 8px;">제2조 서비스의 내용</h4>
-      <ul style="margin:10px 0 10px 16px;list-style:disc;">
-        <li>해외 바이어 발굴 및 매칭 서비스</li>
-        <li>수출전략 제안서 작성 컨설팅</li>
-        <li>미국(텍사스) 현지법인 설립 지원</li>
-        <li>해외 시장 진출 관련 정보 제공</li>
-      </ul>
-
-      <h4 style="color:#C9A84C;font-size:14px;font-weight:800;margin:20px 0 8px;">제3조 서비스 이용 계약</h4>
-      <p>서비스 이용 계약은 이용자가 상담 신청서를 제출하고, 회사가 이를 승낙함으로써 성립합니다. 회사는 서비스 제공이 불가능하다고 판단되는 경우 승낙을 거부할 수 있습니다.</p>
-
-      <h4 style="color:#C9A84C;font-size:14px;font-weight:800;margin:20px 0 8px;">제4조 이용자의 의무</h4>
-      <ul style="margin:10px 0 10px 16px;list-style:disc;">
-        <li>허위 정보를 제공하거나 타인의 정보를 도용하지 않을 의무</li>
-        <li>회사의 지적재산권(제안서, 전략문서 등)을 무단 복제·배포하지 않을 의무</li>
-        <li>서비스 이용 과정에서 취득한 정보를 외부에 유출하지 않을 의무</li>
-      </ul>
-
-      <h4 style="color:#C9A84C;font-size:14px;font-weight:800;margin:20px 0 8px;">제5조 회사의 면책</h4>
-      <p>회사는 바이어 발굴 서비스의 특성상 계약 성사를 보장하지 않으며, 천재지변·시장 상황 변화 등 회사의 통제를 벗어난 사유로 발생한 손해에 대해 책임을 지지 않습니다.</p>
-
-      <h4 style="color:#C9A84C;font-size:14px;font-weight:800;margin:20px 0 8px;">제6조 분쟁 해결</h4>
-      <p>본 약관과 관련한 분쟁은 대한민국 법률을 준거법으로 하며, 서울중앙지방법원을 전속 관할로 합니다.</p>
-
-      <h4 style="color:#C9A84C;font-size:14px;font-weight:800;margin:20px 0 8px;">제7조 문의</h4>
-      <p>약관에 관한 문의: <a href="mailto:kfpexport@kfpexport.com" style="color:#C9A84C;">kfpexport@kfpexport.com</a></p>
-
-      <p style="margin-top:24px;font-size:12px;color:rgba(244,240,232,.25);">본 약관은 2026년 1월 1일부터 시행됩니다.</p>
-    </div>
-  </div>
-</div>
+  <div class="footer-copy">@Copyright 2026. All Right Reserved.</div>
 </footer>
 
-<script>
-/* Sticky Header */
-const hdr = document.getElementById('mainHeader');
-window.addEventListener('scroll',()=>hdr.classList.toggle('scrolled',scrollY>60),{passive:true});
+<!-- ══ FLOATING CTA ══ -->
+<div class="float-cta" id="floatCta">
+  <a href="#apply">🎯 해외 바이어 매칭하기 — 무료 상담</a>
+</div>
 
-/* Market Tabs */
-function switchM(id,btn){
-  document.querySelectorAll('.mpanel').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.mtab').forEach(t=>t.classList.remove('active'));
-  document.getElementById('pm-'+id).classList.add('active');
-  btn.classList.add('active');
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// ── Reveal on Scroll ──
+const io = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('visible');
+      io.unobserve(e.target);
+    }
+  });
+},{threshold:.1,rootMargin:'0px 0px -28px 0px'});
+document.querySelectorAll('.reveal,.reveal-scale').forEach(el=>io.observe(el));
+
+// ── Floating CTA ──
+const floatCta = document.getElementById('floatCta');
+new IntersectionObserver(entries=>{
+  floatCta.classList.toggle('show',!entries[0].isIntersecting);
+},{threshold:0}).observe(document.querySelector('.hero'));
+
+// ── 지역 멀티셀렉트 (최대 3개) ──
+document.querySelectorAll('.region-item').forEach(function(item) {
+  item.addEventListener('click', function() {
+    var isSelected = this.classList.contains('selected');
+    var selectedCount = document.querySelectorAll('.region-item.selected').length;
+    // 이미 선택된 건 해제, 미선택은 3개 미만일 때만 선택
+    if (isSelected) {
+      this.classList.remove('selected');
+    } else {
+      if (selectedCount >= 3) return; // 3개 초과 불가
+      this.classList.add('selected');
+    }
+    // 선택 목록 업데이트
+    var vals = Array.from(document.querySelectorAll('.region-item.selected'))
+      .map(function(el) { return el.dataset.value; });
+    document.getElementById('regionSelected').textContent = vals.length ? vals.join(', ') : '없음';
+    // 3개 선택 시 미선택 항목 비활성화
+    var newCount = vals.length;
+    document.querySelectorAll('.region-item:not(.selected)').forEach(function(el) {
+      el.classList.toggle('disabled', newCount >= 3);
+    });
+    updateProgress();
+  });
+});
+
+// ── 진행률 바 ──
+var REQ_FIELDS = ['f_company', 'f_ceo', 'f_phone', 'f_industry'];
+function updateProgress() {
+  var n = 0;
+  REQ_FIELDS.forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el && el.value.trim()) n++;
+  });
+  // 업종
+  var ind = document.getElementById('f_industry');
+  if (ind && ind.value) n++;
+  // 지역 (보너스)
+  var regionSel = document.querySelectorAll('.region-item.selected').length;
+  var total = REQ_FIELDS.length + 1; // 필수항목 수
+  var pct = Math.min(Math.round((n / total) * 90 + (regionSel > 0 ? 10 : 0)), 100);
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressPct').textContent = pct + '%';
+}
+document.querySelectorAll('#f_company,#f_ceo,#f_phone,#f_address,#f_industry').forEach(function(el) {
+  el.addEventListener('input', updateProgress);
+  el.addEventListener('change', updateProgress);
+});
+
+// ── 전화번호 자동 하이픈 ──
+var phoneEl = document.getElementById('f_phone');
+if (phoneEl) {
+  phoneEl.addEventListener('input', function() {
+    var v = this.value.replace(/\D/g, '');
+    if (v.length > 3 && v.length <= 7) v = v.slice(0,3) + '-' + v.slice(3);
+    else if (v.length > 7) v = v.slice(0,3) + '-' + v.slice(3,7) + '-' + v.slice(7,11);
+    this.value = v;
+    updateProgress();
+  });
 }
 
-/* 히어로 지역 배지 → 시장 섹션 이동 + 탭 전환 */
-function goMarket(id, tabIdx){
-  const tabs = document.querySelectorAll('.mtab');
-  document.getElementById('markets').scrollIntoView({behavior:'smooth'});
-  setTimeout(()=>{ switchM(id, tabs[tabIdx]); }, 400);
-}
+// ── Form Submit ──
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx6__-XCe869mxsPZ5d5aCxU-zafLTC4shk65lbfJgh3mogvc4m79Klw9aZeSkuyqng/exec';
 
-/* Parallax */
-window.addEventListener('scroll',()=>{
-  const y=scrollY;
-  document.querySelectorAll('.ib img').forEach(img=>img.style.transform=`translateY(${y*.028}px)`);
-},{passive:true});
+function handleSubmit(e) {
+  e.preventDefault();
+  var btn = document.getElementById('submitBtn');
 
-/* Scroll Reveal */
-const ro=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis');}),{threshold:.12});
-document.querySelectorAll('.fu').forEach(el=>ro.observe(el));
+  var regions = Array.from(document.querySelectorAll('.region-item.selected'))
+    .map(function(el) { return el.dataset.value; });
 
-/* KPI Counter */
-function countUp(el,target){
-  let s=0,dur=2200;
-  const step=ts=>{
-    if(!s)s=ts;
-    const p=Math.min((ts-s)/dur,1),ease=1-Math.pow(1-p,3),v=Math.floor(ease*target);
-    el.textContent=v>=1e8?(v/1e8).toFixed(1)+'억':v.toLocaleString();
-    if(p<1)requestAnimationFrame(step);
-    else el.textContent=target>=1e8?(target/1e8).toFixed(1)+'억':target.toLocaleString();
+  var vals = {
+    company:  document.getElementById('f_company').value.trim(),
+    ceo:      document.getElementById('f_ceo').value.trim(),
+    phone:    document.getElementById('f_phone').value.trim(),
+    address:  (document.getElementById('f_address') || {value:''}).value.trim(),
+    industry: document.getElementById('f_industry').value,
+    region:   regions.length ? regions.join(', ') : '미선택',
+    utm:      new URLSearchParams(location.search).get('utm_source') || '직접방문'
   };
-  requestAnimationFrame(step);
+
+  if (!vals.company)  { alert('회사명을 입력해주세요'); return; }
+  if (!vals.ceo)      { alert('대표자명을 입력해주세요'); return; }
+  if (!vals.phone)    { alert('전화번호를 입력해주세요'); return; }
+  if (!vals.industry) { alert('업종을 선택해주세요'); return; }
+
+  btn.classList.add('loading');
+  btn.disabled = true;
+  document.getElementById('btnTxt').textContent = '접수 중...';
+
+  fetch(SCRIPT_URL, {
+    method:  'POST',
+    mode:    'no-cors',
+    headers: { 'Content-Type': 'text/plain' },
+    body:    JSON.stringify(vals)
+  }).then(function() {
+    e.target.style.display = 'none';
+    document.getElementById('successMsg').style.display = 'block';
+    document.getElementById('successMsg').scrollIntoView({ behavior: 'smooth' });
+  }).catch(function(err) {
+    console.error('전송 오류:', err);
+    btn.classList.remove('loading');
+    btn.disabled = false;
+    document.getElementById('btnTxt').textContent = '신청하기';
+    alert('일시적인 오류가 발생했습니다.\n잠시 후 다시 시도해주세요.\n문의: kfpexport@kfpexport.com');
+  });
 }
-const ko=new IntersectionObserver(es=>es.forEach(e=>{
-  if(e.isIntersecting){const t=parseInt(e.target.dataset.count);if(!isNaN(t))countUp(e.target,t);ko.unobserve(e.target);}
-}),{threshold:.5});
-document.querySelectorAll('[data-count]').forEach(el=>ko.observe(el));
 </script>
 </body>
 </html>
