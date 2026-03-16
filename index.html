@@ -1045,7 +1045,7 @@ footer{background:#07101e;padding:28px 20px;text-align:center}
         <form onsubmit="handleSubmit(event)">
           <div class="fg"><label>회사명 *</label><input type="text" id="f_company" placeholder="회사명을 입력해주세요" required></div>
           <div class="fg"><label>대표자명 *</label><input type="text" id="f_ceo" placeholder="대표자명을 입력해주세요" required></div>
-          <div class="fg"><label>핸드폰번호 *</label><input type="tel" id="f_phone" placeholder="010-0000-0000" required></div>
+          <div class="fg"><label>핸드폰번호 *</label><input type="text" id="f_phone" inputmode="numeric" placeholder="010-0000-0000" autocomplete="tel" maxlength="13" required></div>
           <div class="fg"><label>주소지</label><input type="text" id="f_address" placeholder="서울시 강남구"></div>
           <div class="fg">
             <label>업종 *</label>
@@ -1255,10 +1255,20 @@ document.querySelectorAll('#f_company,#f_ceo,#f_phone,#f_address,#f_industry').f
 var phoneEl = document.getElementById('f_phone');
 if (phoneEl) {
   phoneEl.addEventListener('input', function() {
-    var v = this.value.replace(/\D/g, '');
-    if (v.length > 3 && v.length <= 7) v = v.slice(0,3) + '-' + v.slice(3);
-    else if (v.length > 7) v = v.slice(0,3) + '-' + v.slice(3,7) + '-' + v.slice(7,11);
-    this.value = v;
+    var pos = this.selectionStart;
+    var prev = this.value;
+    var digits = prev.replace(/[^0-9]/g, '').slice(0, 11);
+    var formatted = '';
+    if (digits.length <= 3) {
+      formatted = digits;
+    } else if (digits.length <= 7) {
+      formatted = digits.slice(0,3) + '-' + digits.slice(3);
+    } else {
+      formatted = digits.slice(0,3) + '-' + digits.slice(3,7) + '-' + digits.slice(7,11);
+    }
+    this.value = formatted;
+    var diff = formatted.length - prev.length;
+    try { this.setSelectionRange(pos + diff, pos + diff); } catch(e2) {}
     updateProgress();
   });
 }
